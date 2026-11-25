@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Karibu Kenya — Personal Safari & City Tour Companion</title>
+  <title>Darius Deedea Tour Guide — Personal Safari & City Companion</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -148,11 +148,6 @@
       background: var(--surface);
       color: var(--text);
       border: 1px solid var(--border);
-    }
-    .btn-ghost-light {
-      background: rgba(255,255,255,0.16);
-      color: #fff;
-      border: 1px solid rgba(255,255,255,0.28);
     }
 
     /* Tour Selector Tabs */
@@ -558,9 +553,9 @@
     <div class="container">
       <div class="guide-top-row">
         <div class="guide-profile">
-          <div class="avatar">JM</div>
+          <div class="avatar">DD</div>
           <div>
-            <h1 style="font-size: 1.3rem; line-height: 1.2;">Juma Mwangi • Safari & City Guide</h1>
+            <h1 style="font-size: 1.3rem; line-height: 1.2;">Darius Deedea Tour Guide</h1>
             <div class="badge-row">
               <button id="statusToggle" class="status-pill" title="Click to toggle availability">
                 <span id="statusDot" class="dot"></span>
@@ -695,7 +690,7 @@
       <p>Save these numbers before heading into low-signal park zones.</p>
       <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem;">
         <div style="padding: 10px; background: var(--surface-alt); border-radius: 10px;">
-          <strong>Guide Juma (Direct / WhatsApp):</strong><br/>+254 712 345 678
+          <strong>Darius Deedea (Direct / WhatsApp):</strong><br/>+254 712 345 678
         </div>
         <div style="padding: 10px; background: var(--surface-alt); border-radius: 10px;">
           <strong>Vehicle & Meeting Point:</strong><br/>Toyota Land Cruiser • Plate KCD 412S
@@ -715,7 +710,7 @@
   <div class="modal-backdrop" id="detourModal">
     <div class="modal">
       <h3>Request a Stop or Detour</h3>
-      <p>Need a coffee break, ATM, pharmacy, or extra photo stop? Send a quick note to your guide.</p>
+      <p>Need a coffee break, ATM, pharmacy, or extra photo stop? Send a quick note to Darius.</p>
       <div style="display: flex; flex-direction: column; gap: 10px;">
         <input type="text" id="detourInput" placeholder="e.g., Quick espresso stop or souvenir gallery..." />
       </div>
@@ -730,7 +725,7 @@
   <div class="modal-backdrop" id="reviewModal">
     <div class="modal">
       <h3>Rate Today's Experience</h3>
-      <p>Thank you for exploring Kenya with me! Your feedback helps future travelers.</p>
+      <p>Thank you for exploring Kenya with Darius Deedea! Your feedback helps future travelers.</p>
       <textarea id="reviewText" rows="3" placeholder="Share your favorite wildlife sighting or moment..."></textarea>
       <div class="modal-actions">
         <button class="btn btn-outline" onclick="closeModal('reviewModal')">Close</button>
@@ -1146,7 +1141,7 @@
     }
 
     function copyGuideCard() {
-      const text = "Guide Juma Mwangi | Phone/WhatsApp: +254 712 345 678 | Land Cruiser: KCD 412S";
+      const text = "Darius Deedea Tour Guide | Phone/WhatsApp: +254 712 345 678 | Land Cruiser: KCD 412S";
       navigator.clipboard?.writeText(text);
       showToast("Guide contact card copied!");
     }
@@ -1156,7 +1151,7 @@
       if (!val) return showToast("Please enter a quick note first");
       document.getElementById("detourInput").value = "";
       closeModal("detourModal");
-      showToast("Request sent to Guide Juma!");
+      showToast("Request sent to Darius Deedea!");
     }
 
     function submitReview() {
@@ -1164,7 +1159,7 @@
       if (!val) return showToast("Write a short note first");
       document.getElementById("reviewText").value = "";
       closeModal("reviewModal");
-      showToast("Asante! Review saved for your guide.");
+      showToast("Asante! Review saved for Darius Deedea.");
     }
 
     // Init
