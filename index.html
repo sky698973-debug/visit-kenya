@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Darius Deedea Tour Guide — Personal Safari & City Companion</title>
+  <title>Darius Deedea Tour Guide — Kenya Safari & City Tours</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -30,28 +30,29 @@
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.55;
-      padding-bottom: 90px;
+      padding-bottom: 84px;
     }
 
     h1, h2, h3, .serif { font-family: 'Fraunces', serif; }
 
-    /* Top Guide Header */
-    .guide-header {
-      background: linear-gradient(135deg, var(--secondary) 0%, #143629 100%);
-      color: #fff;
-      padding: 20px 18px 24px;
-      border-bottom-left-radius: 26px;
-      border-bottom-right-radius: 26px;
-      box-shadow: var(--shadow);
-    }
-
     .container {
-      max-width: 820px;
+      max-width: 960px;
       margin: 0 auto;
       padding: 0 16px;
     }
 
-    .guide-top-row {
+    /* Header & Top Navigation */
+    .site-header {
+      background: linear-gradient(135deg, var(--secondary) 0%, #143629 100%);
+      color: #fff;
+      padding: 16px 0 18px;
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+
+    .header-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -59,90 +60,97 @@
       flex-wrap: wrap;
     }
 
-    .guide-profile {
+    .brand {
       display: flex;
       align-items: center;
       gap: 12px;
+      cursor: pointer;
     }
 
     .avatar {
-      width: 54px;
-      height: 54px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: var(--accent);
       color: var(--secondary);
       display: grid;
       place-items: center;
       font-weight: 700;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       border: 2px solid #fff;
       flex-shrink: 0;
     }
 
-    .badge-row {
+    .header-meta {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-top: 4px;
-      flex-wrap: wrap;
-    }
-
-    .status-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.14);
-      cursor: pointer;
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: #fff;
-    }
-
-    .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #4ADE80;
-      box-shadow: 0 0 8px #4ADE80;
-    }
-
-    .dot.available { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
-
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
     .clock-box {
       background: rgba(255, 255, 255, 0.12);
-      padding: 6px 11px;
+      padding: 5px 10px;
       border-radius: 10px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       text-align: right;
     }
 
+    .nav-bar {
+      display: flex;
+      gap: 6px;
+      margin-top: 14px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+    .nav-bar::-webkit-scrollbar { display: none; }
+
+    .nav-link {
+      background: rgba(255, 255, 255, 0.1);
+      color: #E5EFEA;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      padding: 8px 14px;
+      border-radius: 11px;
+      font-family: inherit;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .nav-link:hover { background: rgba(255, 255, 255, 0.2); }
+    .nav-link.active {
+      background: #fff;
+      color: var(--secondary);
+      border-color: #fff;
+    }
+
+    /* Page Views */
+    .page-view { display: none; padding-top: 22px; animation: fadeIn 0.22s ease; }
+    .page-view.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Buttons */
     .btn {
       border: none;
       border-radius: 12px;
-      padding: 10px 14px;
+      padding: 10px 16px;
       font-family: inherit;
       font-weight: 600;
-      font-size: 0.86rem;
+      font-size: 0.88rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
       transition: transform 0.15s ease, background 0.15s ease;
+      text-decoration: none;
     }
-
     .btn:active { transform: scale(0.97); }
     .btn-primary { background: var(--primary); color: #fff; }
     .btn-primary:hover { background: var(--primary-dark); }
+    .btn-secondary { background: var(--secondary); color: #fff; }
     .btn-accent { background: var(--accent); color: #1F2421; }
     .btn-outline {
       background: var(--surface);
@@ -150,381 +158,256 @@
       border: 1px solid var(--border);
     }
 
-    /* Tour Selector Tabs */
-    .tour-switcher {
-      margin-top: 18px;
-      display: flex;
-      gap: 8px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-      scrollbar-width: none;
-    }
-    .tour-switcher::-webkit-scrollbar { display: none; }
-
-    .tour-tab {
-      background: rgba(255, 255, 255, 0.12);
-      color: #E5EFEA;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 8px 14px;
-      border-radius: 12px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      white-space: nowrap;
-      cursor: pointer;
-    }
-
-    .tour-tab.active {
-      background: #fff;
-      color: var(--secondary);
-      border-color: #fff;
-    }
-
-    /* Cards & Sections */
-    .section { margin-top: 20px; }
-
+    /* Cards & Grids */
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 18px;
+      padding: 20px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+
+    .section-heading {
+      font-size: 1.45rem;
+      color: var(--secondary);
+      margin-bottom: 4px;
+    }
+
+    .section-sub {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    /* Hero Banner (Home) */
+    .hero {
+      background: linear-gradient(125deg, #1E4D3B 0%, #2C664F 60%, #B8522E 140%);
+      color: #fff;
+      border-radius: 22px;
+      padding: 28px 24px;
+      margin-bottom: 20px;
       box-shadow: var(--shadow);
     }
 
-    .section-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 12px;
-      gap: 10px;
-    }
-
-    .section-title {
-      font-size: 1.2rem;
-      color: var(--secondary);
-    }
-
-    /* Progress Bar */
-    .progress-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.84rem;
-      color: var(--muted);
-      margin-bottom: 6px;
-      font-weight: 600;
-    }
-
-    .progress-track {
-      height: 10px;
-      background: var(--surface-alt);
-      border-radius: 999px;
-      overflow: hidden;
-    }
-
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      border-radius: 999px;
-      transition: width 0.35s ease;
-    }
-
-    /* Interactive Route SVG Map */
-    .route-map-wrap {
-      background: #F4EFE6;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      padding: 12px;
-      margin-top: 12px;
-      overflow-x: auto;
-    }
-
-    .route-map-wrap svg {
-      width: 100%;
-      min-width: 520px;
-      height: 135px;
-      display: block;
-    }
-
-    .waypoint-node { cursor: pointer; }
-    .waypoint-node text {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      fill: var(--text);
-    }
-
-    /* Itinerary Stops */
-    .stop-list {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .stop-card {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      border-radius: var(--radius);
-      padding: 15px;
-      transition: border-color 0.2s ease, transform 0.15s ease;
-    }
-
-    .stop-card.active-stop {
-      border-color: var(--primary);
-      box-shadow: 0 8px 24px rgba(184, 82, 46, 0.12);
-    }
-
-    .stop-card.completed {
-      background: #F9FBF9;
-      border-color: #C7DDD3;
-    }
-
-    .stop-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 10px;
-    }
-
-    .stop-time {
+    .hero-badge {
       display: inline-block;
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--primary);
-      background: #FCEEE9;
-      padding: 3px 9px;
-      border-radius: 8px;
-      margin-bottom: 5px;
+      background: rgba(255,255,255,0.16);
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-bottom: 10px;
     }
 
-    .stop-card.completed .stop-time {
-      color: var(--secondary);
-      background: var(--secondary-light);
-    }
+    .hero h2 { font-size: 1.85rem; line-height: 1.2; margin-bottom: 10px; }
+    .hero p { color: #E4EFEA; max-width: 620px; margin-bottom: 18px; font-size: 0.96rem; }
+    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
 
-    .stop-title {
-      font-size: 1.05rem;
-      font-weight: 700;
-    }
-
-    .stop-summary {
-      font-size: 0.88rem;
-      color: var(--muted);
-      margin-top: 4px;
-    }
-
-    .check-btn {
-      width: 30px;
-      height: 30px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: #fff;
-      cursor: pointer;
+    .stat-strip {
       display: grid;
-      place-items: center;
-      font-weight: 700;
-      color: transparent;
-      flex-shrink: 0;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
     }
 
-    .stop-card.completed .check-btn {
-      background: var(--secondary);
-      border-color: var(--secondary);
-      color: #fff;
+    .stat-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      text-align: center;
     }
+    .stat-box strong { display: block; font-size: 1.35rem; color: var(--primary); font-family: 'Fraunces', serif; }
+    .stat-box span { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
 
-    .stop-actions {
+    /* Filter Pills */
+    .filter-row {
       display: flex;
       gap: 8px;
-      margin-top: 12px;
       flex-wrap: wrap;
-    }
-
-    .story-drawer {
-      display: none;
-      margin-top: 12px;
-      padding-top: 12px;
-      border-top: 1px dashed var(--border);
-      font-size: 0.9rem;
-    }
-
-    .story-drawer.open { display: block; }
-
-    .insider-box {
-      background: var(--surface-alt);
-      padding: 11px 13px;
-      border-radius: 11px;
-      margin-top: 8px;
-      font-size: 0.84rem;
-    }
-
-    /* Pocket Toolkit Tabs */
-    .tool-tabs {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-      background: var(--surface-alt);
-      padding: 5px;
-      border-radius: 12px;
-      margin-bottom: 14px;
-    }
-
-    .tool-tab {
-      border: none;
-      background: transparent;
-      padding: 9px 8px;
-      border-radius: 9px;
-      font-family: inherit;
-      font-size: 0.83rem;
-      font-weight: 600;
-      color: var(--muted);
-      cursor: pointer;
-    }
-
-    .tool-tab.active {
-      background: var(--surface);
-      color: var(--secondary);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
-    }
-
-    .tool-panel { display: none; }
-    .tool-panel.active { display: block; }
-
-    /* Swahili Phrasebook */
-    .phrase-filters {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
+      margin-bottom: 16px;
     }
 
     .chip {
-      padding: 5px 11px;
+      padding: 6px 13px;
       border-radius: 999px;
       border: 1px solid var(--border);
       background: var(--surface);
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       font-weight: 600;
       cursor: pointer;
     }
-
     .chip.active {
       background: var(--secondary);
       color: #fff;
       border-color: var(--secondary);
     }
 
-    .phrase-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 10px;
+    /* Tourist Site Cards */
+    .site-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow);
     }
 
-    .phrase-item {
+    .site-banner {
+      height: 118px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .site-body { padding: 16px; flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 9px;
+      border-radius: 8px;
+      background: rgba(0,0,0,0.28);
+      width: fit-content;
+    }
+
+    .price-tag {
+      font-weight: 700;
+      color: var(--primary);
+      font-size: 0.92rem;
+    }
+
+    /* Popular Areas Rank */
+    .popular-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+
+    .rank-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: var(--accent);
+      color: #1F2421;
+      font-weight: 700;
+      font-size: 0.8rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    /* Live Companion Progress */
+    .progress-track {
+      height: 10px;
+      background: var(--surface-alt);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0 14px;
+    }
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transition: width 0.3s ease;
+    }
+    .stop-item {
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 11px;
+      padding: 13px;
+      margin-bottom: 10px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-    }
-
-    /* Currency Converter */
-    .converter-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      align-items: flex-start;
       gap: 10px;
-      margin-bottom: 12px;
     }
+    .stop-item.done { background: #F4F9F6; border-color: #C4DDD1; }
 
-    .input-group label {
-      display: block;
-      font-size: 0.78rem;
-      font-weight: 600;
-      color: var(--muted);
-      margin-bottom: 4px;
+    /* Forms (Booking & Contact) */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
     }
-
-    .input-group input, .input-group select, .modal textarea, .modal input {
-      width: 100%;
+    .field { display: flex; flex-direction: column; gap: 5px; margin-bottom: 12px; }
+    .field label { font-size: 0.82rem; font-weight: 600; color: var(--muted); }
+    .field input, .field select, .field textarea {
       padding: 10px 12px;
       border-radius: 10px;
       border: 1px solid var(--border);
       font-family: inherit;
-      font-size: 0.95rem;
+      font-size: 0.94rem;
       background: #fff;
     }
 
-    .tip-pills {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      margin-top: 8px;
+    /* Advertisement / Deals Page */
+    .promo-banner {
+      background: linear-gradient(135deg, #B8522E 0%, #D99B26 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 22px;
+      margin-bottom: 18px;
     }
 
-    /* Packing Checklist */
-    .pack-item {
+    .ad-card {
+      background: var(--surface);
+      border: 2px dashed var(--accent);
+      border-radius: var(--radius);
+      padding: 18px;
       display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 9px 0;
-      border-bottom: 1px solid var(--border);
-      font-size: 0.9rem;
-      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .pack-item:last-child { border-bottom: none; }
-    .pack-item input { width: 18px; height: 18px; accent-color: var(--secondary); }
-    .pack-item.checked span { text-decoration: line-through; color: var(--muted); }
 
-    /* Sticky Bottom Action Bar */
+    .ad-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 6px;
+    }
+
+    /* Sticky Bottom Bar */
     .bottom-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       right: 0;
-      background: rgba(255, 255, 255, 0.95);
+      background: rgba(255, 255, 255, 0.96);
       backdrop-filter: blur(10px);
       border-top: 1px solid var(--border);
       padding: 10px 16px;
-      z-index: 40;
+      z-index: 45;
     }
-
     .bottom-inner {
-      max-width: 820px;
+      max-width: 960px;
       margin: 0 auto;
       display: flex;
       gap: 10px;
     }
-
     .bottom-inner .btn { flex: 1; }
 
-    /* Modals */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      background: rgba(20, 26, 23, 0.55);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      z-index: 60;
-    }
-
-    .modal-backdrop.open { display: flex; }
-
-    .modal {
-      background: var(--surface);
-      border-radius: 20px;
-      max-width: 440px;
-      width: 100%;
-      padding: 20px;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-    }
-
-    .modal h3 { margin-bottom: 6px; color: var(--secondary); }
-    .modal p { font-size: 0.88rem; color: var(--muted); margin-bottom: 12px; }
-    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
-
+    /* Toast */
     .toast {
       position: fixed;
       top: 18px;
@@ -539,351 +422,470 @@
       opacity: 0;
       pointer-events: none;
       transition: all 0.25s ease;
-      z-index: 80;
+      z-index: 90;
     }
     .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
 
-  <div id="toast" class="toast">Copied to clipboard!</div>
+  <div id="toast" class="toast">Action completed!</div>
 
-  <!-- Guide Header -->
-  <header class="guide-header">
+  <!-- Site Header & Multi-Page Navigation -->
+  <header class="site-header">
     <div class="container">
-      <div class="guide-top-row">
-        <div class="guide-profile">
+      <div class="header-top">
+        <div class="brand" onclick="navigateTo('home')">
           <div class="avatar">DD</div>
           <div>
-            <h1 style="font-size: 1.3rem; line-height: 1.2;">Darius Deedea Tour Guide</h1>
-            <div class="badge-row">
-              <button id="statusToggle" class="status-pill" title="Click to toggle availability">
-                <span id="statusDot" class="dot"></span>
-                <span id="statusText">Live On Tour</span>
-              </button>
-              <span style="font-size: 0.78rem; color: #D7E6DF;">KPSGA Silver Certified • EN / SW</span>
-            </div>
+            <h1 style="font-size: 1.25rem; line-height: 1.2;">Darius Deedea Tour Guide</h1>
+            <span style="font-size: 0.78rem; color: #D7E6DF;">Licensed Kenya Safari & City Specialist • EN / SW</span>
           </div>
         </div>
 
-        <div class="header-actions">
+        <div class="header-meta">
           <div class="clock-box">
-            <div style="font-size: 0.68rem; opacity: 0.8;">NAIROBI (EAT)</div>
+            <div style="font-size: 0.65rem; opacity: 0.8;">NAIROBI (EAT)</div>
             <strong id="nairobiClock">--:--</strong>
           </div>
-          <button class="btn btn-accent" onclick="openModal('sosModal')">SOS / Contact</button>
+          <button class="btn btn-accent" style="padding: 8px 12px; font-size: 0.8rem;" onclick="navigateTo('booking')">Book Now</button>
         </div>
       </div>
 
-      <!-- Active Tour Switcher -->
-      <div class="tour-switcher" id="tourTabs">
-        <button class="tour-tab active" data-tour="nairobiPark">🦁 Nairobi Park & Giraffe Centre</button>
-        <button class="tour-tab" data-tour="maasaiMara">🌅 Maasai Mara 3-Day Safari</button>
-        <button class="tour-tab" data-tour="cityWalk">☕ Nairobi Cultural & Food Walk</button>
-      </div>
+      <nav class="nav-bar" id="mainNav">
+        <button class="nav-link active" data-page="home">🏠 Home</button>
+        <button class="nav-link" data-page="sites">🗺️ All Tourist Sites</button>
+        <button class="nav-link" data-page="popular">🔥 Most Popular Areas</button>
+        <button class="nav-link" data-page="live">🧭 Live Tour Guide</button>
+        <button class="nav-link" data-page="booking">📅 Booking</button>
+        <button class="nav-link" data-page="ads">📢 Offers & Ads</button>
+        <button class="nav-link" data-page="contact">📞 My Contact</button>
+      </nav>
     </div>
   </header>
 
   <main class="container">
-    <!-- Live Tour Progress & Visual Route -->
-    <section class="section card">
-      <div class="section-header">
-        <div>
-          <h2 class="section-title" id="tourTitle">Nairobi National Park & Giraffe Centre</h2>
-          <p style="font-size: 0.84rem; color: var(--muted);" id="tourSubtitle">Full-day wildlife & conservation loop • Land Cruiser 4x4 (KCD 412S)</p>
+
+    <!-- ==================== 1. HOME PAGE ==================== -->
+    <section id="page-home" class="page-view active">
+      <div class="hero">
+        <span class="hero-badge">🇰🇪 KPSGA Certified Personal Guide • 4x4 Land Cruiser</span>
+        <h2>Explore Kenya With Darius Deedea</h2>
+        <p>From sunrise lion tracking in Nairobi National Park to multi-day Maasai Mara expeditions, coastal Diani escapes, and authentic Nairobi food walks—guided safely at your pace.</p>
+        <div class="hero-actions">
+          <button class="btn btn-accent" onclick="navigateTo('booking')">📅 Book a Custom Tour</button>
+          <button class="btn btn-outline" style="background: rgba(255,255,255,0.14); color: #fff; border-color: rgba(255,255,255,0.3);" onclick="navigateTo('sites')">Explore All Tourist Sites →</button>
         </div>
-        <button class="btn btn-outline" onclick="resetProgress()" style="font-size: 0.78rem; padding: 6px 10px;">Reset Stops</button>
       </div>
 
-      <div class="progress-meta">
-        <span id="progressLabel">0 of 4 stops completed</span>
-        <span id="progressPercent">0%</span>
-      </div>
-      <div class="progress-track">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-
-      <!-- Interactive SVG Route Map -->
-      <div class="route-map-wrap">
-        <svg id="routeSvg" viewBox="0 0 640 135" aria-label="Interactive Tour Route Map"></svg>
-      </div>
-    </section>
-
-    <!-- Live Itinerary & Guide Stories -->
-    <section class="section">
-      <div class="section-header">
-        <h2 class="section-title">Live Itinerary & Field Notes</h2>
-        <span style="font-size: 0.8rem; color: var(--muted);">Tap ✓ as we visit each stop</span>
-      </div>
-      <div class="stop-list" id="stopList"></div>
-    </section>
-
-    <!-- Tourist Pocket Toolkit -->
-    <section class="section card">
-      <div class="section-header">
-        <h2 class="section-title">Tourist Pocket Toolkit</h2>
+      <div class="stat-strip">
+        <div class="stat-box"><strong>8+ Years</strong><span>Guiding Experience</span></div>
+        <div class="stat-box"><strong>450+</strong><span>Happy Travelers</span></div>
+        <div class="stat-box"><strong>15+ Sites</strong><span>Parks, Lakes & Coast</span></div>
+        <div class="stat-box"><strong>4.98 ★</strong><span>Guest Rating</span></div>
       </div>
 
-      <div class="tool-tabs">
-        <button class="tool-tab active" data-tool="swahili">🗣️ Swahili</button>
-        <button class="tool-tab" data-tool="currency">💱 KES Converter</button>
-        <button class="tool-tab" data-tool="packing">🎒 Daypack</button>
-      </div>
-
-      <!-- Panel 1: Swahili Phrasebook -->
-      <div class="tool-panel active" id="panel-swahili">
-        <div class="phrase-filters" id="phraseFilters">
-          <button class="chip active" data-cat="all">All</button>
-          <button class="chip" data-cat="greetings">Greetings</button>
-          <button class="chip" data-cat="safari">Safari</button>
-          <button class="chip" data-cat="market">Market</button>
-        </div>
-        <div class="phrase-grid" id="phraseGrid"></div>
-      </div>
-
-      <!-- Panel 2: KES Currency & Tipping Calculator -->
-      <div class="tool-panel" id="panel-currency">
-        <div class="converter-row">
-          <div class="input-group">
-            <label for="kesInput">Kenyan Shillings (KES)</label>
-            <input type="number" id="kesInput" value="2500" min="0" step="100" />
+      <div class="card">
+        <h3 class="section-heading">Why Tour With Darius Deedea?</h3>
+        <p class="section-sub">Personalized guiding designed for solo travelers, couples, families, and photography groups.</p>
+        <div class="grid-3">
+          <div style="background: var(--surface-alt); padding: 14px; border-radius: 12px;">
+            <strong>🚙 Private Pop-Up Roof 4x4</strong>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Guaranteed window seats, cooler box, binoculars, and charging ports on every drive.</p>
           </div>
-          <div class="input-group">
-            <label for="targetCurrency">Convert To</label>
-            <select id="targetCurrency">
-              <option value="USD">USD ($) — US Dollar</option>
-              <option value="EUR">EUR (€) — Euro</option>
-              <option value="GBP">GBP (£) — British Pound</option>
-            </select>
+          <div style="background: var(--surface-alt); padding: 14px; border-radius: 12px;">
+            <strong>🦁 Expert Wildlife Tracking</strong>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Deep knowledge of animal behavior, birdlife, and photography angles away from crowds.</p>
+          </div>
+          <div style="background: var(--surface-alt); padding: 14px; border-radius: 12px;">
+            <strong>🧭 Interactive Live Companion</strong>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Follow your itinerary stops, Swahili phrases, and KES converter right on your phone.</p>
           </div>
         </div>
-        <div style="background: var(--secondary-light); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
-          <span style="font-size: 0.86rem; font-weight: 600; color: var(--secondary);">Estimated Value</span>
-          <strong id="convertedOutput" style="font-size: 1.25rem; color: var(--secondary);">$19.38</strong>
+      </div>
+
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+          <h3 class="section-heading" style="margin: 0;">Featured Destinations</h3>
+          <button class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;" onclick="navigateTo('popular')">See Most Popular →</button>
         </div>
-        <div class="tip-pills">
-          <button class="chip" onclick="setKes(500)">Coffee / Snack (500 KES)</button>
-          <button class="chip" onclick="setKes(2000)">Craft Souvenir (2,000 KES)</button>
-          <button class="chip" onclick="setKes(6500)">Full-Day Guide Tip (6,500 KES)</button>
+        <div class="grid-3" id="homeFeaturedGrid"></div>
+      </div>
+    </section>
+
+    <!-- ==================== 2. ALL TOURIST SITES PAGE ==================== -->
+    <section id="page-sites" class="page-view">
+      <h2 class="section-heading">All Tourist Sites in Kenya</h2>
+      <p class="section-sub">Browse all destinations covered by Darius Deedea Tour Guide. Tap any site to pre-fill your booking.</p>
+
+      <div class="filter-row" id="siteCategoryFilters">
+        <button class="chip active" data-cat="all">All Sites (9)</button>
+        <button class="chip" data-cat="wildlife">🦁 Wildlife & Safari</button>
+        <button class="chip" data-cat="city">🏛️ Nairobi & Culture</button>
+        <button class="chip" data-cat="lakes">🦩 Rift Valley Lakes</button>
+        <button class="chip" data-cat="coast">🏖️ Coast & Adventure</button>
+      </div>
+
+      <div class="grid-3" id="allSitesGrid"></div>
+    </section>
+
+    <!-- ==================== 3. MOST POPULAR AREAS PAGE ==================== -->
+    <section id="page-popular" class="page-view">
+      <h2 class="section-heading">Most Popular Areas</h2>
+      <p class="section-sub">Top-requested destinations by international and local guests throughout the year.</p>
+      <div class="grid-2" id="popularAreasGrid"></div>
+    </section>
+
+    <!-- ==================== 4. LIVE TOUR GUIDE COMPANION PAGE ==================== -->
+    <section id="page-live" class="page-view">
+      <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+          <div>
+            <h2 class="section-heading">Live Tour Tracker & Field Notes</h2>
+            <p style="font-size: 0.85rem; color: var(--muted);">Active Route: Nairobi National Park, Sheldrick Trust & Giraffe Centre</p>
+          </div>
+          <button class="btn btn-outline" style="font-size: 0.78rem; padding: 6px 10px;" onclick="resetLiveStops()">Reset Stops</button>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.83rem; font-weight: 600; color: var(--muted); margin-top: 12px;">
+          <span id="liveProgressText">0 of 4 stops visited</span>
+          <span id="liveProgressPct">0%</span>
+        </div>
+        <div class="progress-track"><div class="progress-fill" id="liveProgressFill"></div></div>
+
+        <div id="liveStopsContainer"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3 style="color: var(--secondary); margin-bottom: 10px;">🗣️ Quick Swahili Phrasebook</h3>
+          <div id="swahiliQuickList" style="display: flex; flex-direction: column; gap: 8px;"></div>
+        </div>
+        <div class="card">
+          <h3 style="color: var(--secondary); margin-bottom: 10px;">💱 KES Currency Converter</h3>
+          <div class="field">
+            <label>Amount in Kenyan Shillings (KES)</label>
+            <input type="number" id="kesAmount" value="3000" min="0" step="100" oninput="convertKes()" />
+          </div>
+          <div style="background: var(--secondary-light); padding: 12px; border-radius: 12px; font-size: 0.92rem;">
+            <div>🇺🇸 USD: <strong id="usdOut">$23.26</strong></div>
+            <div>🇪🇺 EUR: <strong id="eurOut">€21.74</strong></div>
+            <div>🇬🇧 GBP: <strong id="gbpOut">£18.29</strong></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 5. BOOKING PAGE ==================== -->
+    <section id="page-booking" class="page-view">
+      <div class="card">
+        <h2 class="section-heading">Book Your Tour With Darius Deedea</h2>
+        <p class="section-sub">Reserve your dates directly. No middleman agency fees—instant confirmation via WhatsApp or Email.</p>
+
+        <form id="bookingForm" onsubmit="handleBookingSubmit(event)">
+          <div class="form-grid">
+            <div class="field">
+              <label for="guestName">Full Name *</label>
+              <input type="text" id="guestName" required placeholder="e.g., Sarah Jenkins" />
+            </div>
+            <div class="field">
+              <label for="guestEmail">Email or WhatsApp Number *</label>
+              <input type="text" id="guestEmail" required placeholder="+1 555 234 5678 / sarah@email.com" />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="tourDestination">Select Destination / Package *</label>
+              <select id="tourDestination" onchange="updateBookingEstimate()">
+                <option value="Nairobi National Park & Giraffe Centre" data-rate="130">Nairobi National Park & Giraffe Centre ($130/person)</option>
+                <option value="Maasai Mara 3-Day Safari" data-rate="490">Maasai Mara 3-Day Safari ($490/person)</option>
+                <option value="Amboseli Elephants & Kilimanjaro View" data-rate="240">Amboseli Elephants & Kilimanjaro ($240/person)</option>
+                <option value="Lake Nakuru & Lake Naivasha Day Trip" data-rate="165">Lake Nakuru & Naivasha Day Trip ($165/person)</option>
+                <option value="Nairobi Cultural & Street Food Walk" data-rate="65">Nairobi Cultural & Food Walk ($65/person)</option>
+                <option value="Diani Beach & Wasini Island Excursion" data-rate="150">Diani Beach & Wasini Island ($150/person)</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="tourDate">Preferred Start Date *</label>
+              <input type="date" id="tourDate" required />
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field">
+              <label for="guestCount">Number of Guests</label>
+              <input type="number" id="guestCount" value="2" min="1" max="20" oninput="updateBookingEstimate()" />
+            </div>
+            <div class="field">
+              <label for="vehicleType">Vehicle Preference</label>
+              <select id="vehicleType">
+                <option>4x4 Safari Land Cruiser (Pop-up Roof)</option>
+                <option>Tour Van (Pop-up Roof)</option>
+                <option>Private Saloon / SUV (City Transfer)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="specialNotes">Pickup Hotel / Airport & Special Requests</label>
+            <textarea id="specialNotes" rows="3" placeholder="e.g., Pickup from JKIA Airport or Karen hotel, dietary preferences, photography focus..."></textarea>
+          </div>
+
+          <div style="background: var(--surface-alt); padding: 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+            <div>
+              <span style="font-size: 0.8rem; color: var(--muted); display: block;">Estimated Guide & Transport Total</span>
+              <strong id="bookingEstimate" style="font-size: 1.3rem; color: var(--secondary);">$260 USD</strong>
+            </div>
+            <span style="font-size: 0.78rem; color: var(--muted);">*Park entry fees can be paid via eCitizen</span>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 13px;">✅ Confirm Booking Request</button>
+        </form>
+
+        <div id="bookingConfirmation" style="display: none; margin-top: 16px; background: var(--secondary-light); border: 1px solid #B7D6C8; padding: 16px; border-radius: 14px;">
+          <h4 style="color: var(--secondary); margin-bottom: 4px;">🎉 Booking Request Recorded!</h4>
+          <p id="bookingSummaryText" style="font-size: 0.88rem; margin-bottom: 10px;"></p>
+          <button class="btn btn-secondary" onclick="sendBookingWhatsApp()">📲 Send Directly to Darius on WhatsApp</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== 6. ADVERTISEMENT & PARTNER OFFERS PAGE ==================== -->
+    <section id="page-ads" class="page-view">
+      <div class="promo-banner">
+        <span class="hero-badge" style="background: rgba(0,0,0,0.22);">🔥 SEASONAL PROMOTION • 2026</span>
+        <h2 style="font-size: 1.55rem; margin-bottom: 6px;">15% Off Group Safaris & Airport Transfers!</h2>
+        <p style="font-size: 0.92rem; opacity: 0.95; margin-bottom: 14px;">Book a 3+ day Maasai Mara or Amboseli safari for 3 or more guests with Darius Deedea and get complimentary JKIA Airport pickup & drop-off.</p>
+        <button class="btn btn-outline" onclick="navigateTo('booking')">Claim Offer on Booking Page →</button>
+      </div>
+
+      <h3 class="section-heading">Featured Tours & Trusted Partner Deals</h3>
+      <p class="section-sub">Curated accommodations, gear rentals, and local experiences recommended by Darius Deedea.</p>
+
+      <div class="grid-3">
+        <div class="ad-card">
+          <div>
+            <div class="ad-label">Sponsored • Safari Camp Partner</div>
+            <h4 style="margin-bottom: 6px;">Mara River View Tented Camp</h4>
+            <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Eco-luxury canvas tents overlooking hippo pools. Mention code <strong>DARIUS10</strong> for 10% off full-board stays.</p>
+          </div>
+          <button class="btn btn-outline" onclick="showToast('Promo code DARIUS10 copied!')">Copy Code: DARIUS10</button>
+        </div>
+
+        <div class="ad-card">
+          <div>
+            <div class="ad-label">Featured Package • Best Value</div>
+            <h4 style="margin-bottom: 6px;">Nairobi 1-Day Wildlife Triple Pass</h4>
+            <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Nairobi National Park + Sheldrick Elephant Orphanage + Giraffe Centre in one seamless private 4x4 day.</p>
+          </div>
+          <button class="btn btn-primary" onclick="bookSpecificSite('Nairobi National Park & Giraffe Centre')">Book This Package</button>
+        </div>
+
+        <div class="ad-card">
+          <div>
+            <div class="ad-label">Partner • Local Artisans</div>
+            <h4 style="margin-bottom: 6px;">Kazuri Beads & Pottery Workshop</h4>
+            <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 12px;">Free guided factory tour in Karen showing hand-crafted ceramic jewelry made by local women artisans.</p>
+          </div>
+          <button class="btn btn-outline" onclick="navigateTo('contact')">Ask Darius to Add Stop</button>
         </div>
       </div>
 
-      <!-- Panel 3: Daypack Checklist -->
-      <div class="tool-panel" id="panel-packing">
-        <div id="packingList"></div>
+      <div class="card" style="margin-top: 18px; background: var(--surface-alt);">
+        <h4 style="color: var(--secondary); margin-bottom: 4px;">📣 Advertise Your Hotel, Camp, or Travel Brand Here</h4>
+        <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 10px;">Reach tourists actively planning safaris and city tours in Kenya. Contact Darius Deedea for featured placement.</p>
+        <button class="btn btn-secondary" onclick="navigateTo('contact')">Inquire About Advertising</button>
       </div>
     </section>
+
+    <!-- ==================== 7. MY CONTACT PAGE ==================== -->
+    <section id="page-contact" class="page-view">
+      <div class="grid-2">
+        <div class="card">
+          <h2 class="section-heading">Contact Darius Deedea</h2>
+          <p class="section-sub">Available 24/7 for tour inquiries, airport pickups, and live guest support.</p>
+
+          <div style="display: flex; flex-direction: column; gap: 12px; font-size: 0.92rem;">
+            <div style="padding: 12px; background: var(--surface-alt); border-radius: 12px;">
+              <strong>📞 Direct Phone & WhatsApp:</strong><br/>
+              <a href="tel:+254712345678" style="color: var(--primary); font-weight: 700; text-decoration: none;">+254 712 345 678</a>
+            </div>
+            <div style="padding: 12px; background: var(--surface-alt); border-radius: 12px;">
+              <strong>✉️ Email Address:</strong><br/>
+              <a href="mailto:darius.deedea@kenyatours.co.ke" style="color: var(--secondary); font-weight: 600; text-decoration: none;">darius.deedea@kenyatours.co.ke</a>
+            </div>
+            <div style="padding: 12px; background: var(--surface-alt); border-radius: 12px;">
+              <strong>📍 Base Location:</strong><br/>
+              Nairobi, Kenya (Karen / Westlands / JKIA Pickups)
+            </div>
+            <div style="padding: 12px; background: var(--surface-alt); border-radius: 12px;">
+              <strong>🪪 Guide Credentials & Vehicle:</strong><br/>
+              KPSGA Silver Certified • Toyota Land Cruiser 4x4 (KCD 412S)
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="copyContactDetails()">📋 Copy Contact Card</button>
+            <a class="btn btn-secondary" href="https://wa.me/254712345678" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 class="section-heading">Send a Quick Message</h3>
+          <p class="section-sub">Have a question before booking? Write directly to Darius.</p>
+          <form onsubmit="handleContactSubmit(event)">
+            <div class="field">
+              <label>Your Name *</label>
+              <input type="text" id="contactName" required placeholder="Your name" />
+            </div>
+            <div class="field">
+              <label>Your Email or WhatsApp *</label>
+              <input type="text" id="contactReply" required placeholder="How should I reply?" />
+            </div>
+            <div class="field">
+              <label>Message *</label>
+              <textarea id="contactMsg" rows="4" required placeholder="Ask about routes, park fees, family tours, or custom dates..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message to Darius</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Sticky Bottom Action Bar -->
+  <!-- Sticky Bottom Quick Bar -->
   <div class="bottom-bar">
     <div class="bottom-inner">
-      <button class="btn btn-primary" onclick="openModal('detourModal')">📍 Request Stop / Detour</button>
-      <button class="btn btn-outline" onclick="openModal('reviewModal')">⭐ Tip & Leave Review</button>
-    </div>
-  </div>
-
-  <!-- SOS / Contact Modal -->
-  <div class="modal-backdrop" id="sosModal">
-    <div class="modal">
-      <h3>Guide & Emergency Contacts</h3>
-      <p>Save these numbers before heading into low-signal park zones.</p>
-      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem;">
-        <div style="padding: 10px; background: var(--surface-alt); border-radius: 10px;">
-          <strong>Darius Deedea (Direct / WhatsApp):</strong><br/>+254 712 345 678
-        </div>
-        <div style="padding: 10px; background: var(--surface-alt); border-radius: 10px;">
-          <strong>Vehicle & Meeting Point:</strong><br/>Toyota Land Cruiser • Plate KCD 412S
-        </div>
-        <div style="padding: 10px; background: #FCEEE9; border-radius: 10px; color: var(--primary-dark);">
-          <strong>Kenya Emergency / Tourist Helpline:</strong><br/>999 / 112 • KWS Hotline: +254 800 597 000
-        </div>
-      </div>
-      <div class="modal-actions">
-        <button class="btn btn-outline" onclick="copyGuideCard()">Copy Contact Card</button>
-        <button class="btn btn-primary" onclick="closeModal('sosModal')">Done</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Request Stop / Detour Modal -->
-  <div class="modal-backdrop" id="detourModal">
-    <div class="modal">
-      <h3>Request a Stop or Detour</h3>
-      <p>Need a coffee break, ATM, pharmacy, or extra photo stop? Send a quick note to Darius.</p>
-      <div style="display: flex; flex-direction: column; gap: 10px;">
-        <input type="text" id="detourInput" placeholder="e.g., Quick espresso stop or souvenir gallery..." />
-      </div>
-      <div class="modal-actions">
-        <button class="btn btn-outline" onclick="closeModal('detourModal')">Cancel</button>
-        <button class="btn btn-primary" onclick="submitDetour()">Send to Guide</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Review Modal -->
-  <div class="modal-backdrop" id="reviewModal">
-    <div class="modal">
-      <h3>Rate Today's Experience</h3>
-      <p>Thank you for exploring Kenya with Darius Deedea! Your feedback helps future travelers.</p>
-      <textarea id="reviewText" rows="3" placeholder="Share your favorite wildlife sighting or moment..."></textarea>
-      <div class="modal-actions">
-        <button class="btn btn-outline" onclick="closeModal('reviewModal')">Close</button>
-        <button class="btn btn-primary" onclick="submitReview()">Submit Note</button>
-      </div>
+      <button class="btn btn-primary" onclick="navigateTo('booking')">📅 Book Tour</button>
+      <button class="btn btn-secondary" onclick="navigateTo('live')">🧭 Live Guide</button>
+      <button class="btn btn-outline" onclick="navigateTo('contact')">📞 Contact Darius</button>
     </div>
   </div>
 
   <script>
-    const tours = {
-      nairobiPark: {
-        title: "Nairobi National Park & Giraffe Centre",
-        subtitle: "Full-day wildlife & conservation loop • Land Cruiser 4x4 (KCD 412S)",
-        stops: [
-          {
-            time: "06:30 AM",
-            name: "Nairobi National Park Main Gate",
-            dist: "Start",
-            summary: "Golden-hour game drive tracking black rhinos, lions, and giraffes against the city skyline.",
-            story: "Founded in 1946, this is the only wildlife capital park in the world. Keep your camera ready near Ivory Burning Site and Kingfisher Picnic Area where lion prides often sunbathe.",
-            tip: "Use fast shutter speed (1/1000s+) from the pop-up roof; morning breeze can be chilly so keep a light jacket handy."
-          },
-          {
-            time: "10:45 AM",
-            name: "Sheldrick Wildlife Trust",
-            dist: "+9 km",
-            summary: "Public 11 AM mud-bath & milk feeding session for rescued baby elephants.",
-            story: "Each orphaned calf has a dedicated keeper who sleeps beside them in shifts. Listen closely as the head keeper introduces every elephant's rescue story by name.",
-            tip: "Stand near the front rope by 10:50 AM for unobstructed eye-level photos when the calves charge in."
-          },
-          {
-            time: "01:00 PM",
-            name: "Tamambo Karen Blixen Coffee Garden",
-            dist: "+6 km",
-            summary: "Relaxed garden lunch under century-old jacaranda trees in Karen.",
-            story: "Located beside the historic 1917 farmhouse made famous in 'Out of Africa', this shaded courtyard serves fresh Kenyan AA coffee and grilled lake tilapia.",
-            tip: "Try the Kenyan passion fruit juice and ask for freshly roasted Peaberry beans if buying coffee."
-          },
-          {
-            time: "03:00 PM",
-            name: "AFEW Giraffe Centre",
-            dist: "+4 km",
-            summary: "Elevated wooden walkway encounter with endangered Rothschild's giraffes.",
-            story: "Born in 1979 to save the Rothschild's giraffe from extinction in western Kenya, this sanctuary lets you meet giraffes face-to-face at canopy height.",
-            tip: "Hold one pellet between thumb and forefinger—never feed from an open palm, and avoid touching their sensitive muzzles."
-          }
-        ]
+    // Tourist Sites Data
+    const touristSites = [
+      {
+        name: "Maasai Mara National Reserve",
+        cat: "wildlife",
+        popularRank: "#1 Most Visited",
+        duration: "3–4 Days",
+        price: "From $490",
+        color: "linear-gradient(135deg, #933E20, #D99B26)",
+        desc: "World-famous Big Five savanna, Great Wildebeest Migration, and sunrise hot-air balloon safaris."
       },
-      maasaiMara: {
-        title: "Maasai Mara 3-Day Safari",
-        subtitle: "Big Five expedition • Mara Triangle & Talek River Plains",
-        stops: [
-          {
-            time: "Day 1 • 08:00 AM",
-            name: "Great Rift Valley Escarpment",
-            dist: "Start",
-            summary: "Panoramic viewpoint overlooking Mount Longonot and the volcanic valley floor.",
-            story: "Stretching 6,000 km from Lebanon to Mozambique, the Rift Valley drops dramatically right before your eyes at Mai Mahiu.",
-            tip: "Best morning light faces west—step to the far left terrace for wide-angle landscape shots."
-          },
-          {
-            time: "Day 1 • 04:00 PM",
-            name: "Sunset Game Drive • Sekenani Plains",
-            dist: "+195 km",
-            summary: "First afternoon traverse searching for cheetahs, elephants, and topi.",
-            story: "Late afternoon cools the savanna, bringing big cats out from acacia shade onto termite mounds to scan the horizon.",
-            tip: "Switch to warm white balance during golden hour for rich amber grass tones."
-          },
-          {
-            time: "Day 2 • 06:15 AM",
-            name: "Mara River Crossing Lookout",
-            dist: "+32 km",
-            summary: "Full-day expedition along hippo pools and crocodile-lined river bends.",
-            story: "Even outside peak migration months, resident pods of 40+ hippos and Nile crocodiles make the Mara River dramatic year-round.",
-            tip: "Pack binoculars—martial eagles and lilac-breasted rollers perch on dead riverine fig trees."
-          },
-          {
-            time: "Day 3 • 07:30 AM",
-            name: "Maasai Manyatta Cultural Visit",
-            dist: "+14 km",
-            summary: "Guided welcome into a traditional Maasai homestead with elders and warriors.",
-            story: "Learn how homes are built from acacia wood, mud, and cow dung, and how beadwork colors signify age, marriage, and bravery.",
-            tip: "Always ask before taking close-up portraits; community craft purchases go directly to village families."
-          }
-        ]
+      {
+        name: "Nairobi National Park & Giraffe Centre",
+        cat: "wildlife",
+        popularRank: "#2 Best Day Trip",
+        duration: "Full Day (8 hrs)",
+        price: "From $130",
+        color: "linear-gradient(135deg, #1E4D3B, #3C7A61)",
+        desc: "Spot black rhinos and lions against Nairobi's skyline, plus feed endangered Rothschild's giraffes."
       },
-      cityWalk: {
-        title: "Nairobi Cultural & Food Walk",
-        subtitle: "Downtown heritage, rooftop views & Kenyan specialty coffee",
-        stops: [
-          {
-            time: "09:30 AM",
-            name: "Kenya National Archives",
-            dist: "Start",
-            summary: "Murumbi Gallery collection of East African royal stools, textiles, and masks.",
-            story: "Curated by Kenya's second Vice President Joseph Murumbi, this archive preserves rare pre-colonial artifacts from across Africa.",
-            tip: "Meet right beneath the iconic concrete canopy outside—one of Nairobi's easiest landmarks."
-          },
-          {
-            time: "11:00 AM",
-            name: "KICC Rooftop Helipad",
-            dist: "+0.8 km",
-            summary: "360-degree skyline panorama from the 28th-floor circular tower.",
-            story: "Inspired by a traditional African hut, the Kenyatta International Convention Centre offers clear views all the way to Ngong Hills.",
-            tip: "Bring a passport or ID copy for lobby security check-in."
-          },
-          {
-            time: "12:45 PM",
-            name: "Maasai Market & City Market",
-            dist: "+1.1 km",
-            summary: "Open-air artisan stalls for hand-woven kiondo baskets, soapstone, and beadwork.",
-            story: "Artisans travel from Kisii, Machakos, and Kajiado to sell directly to visitors without middlemen.",
-            tip: "Smile, say 'Habari yako', and bargain warmly—aim for 60–70% of the initial asking price."
-          },
-          {
-            time: "02:30 PM",
-            name: "Nairobi Street Kitchen",
-            dist: "+3.5 km",
-            summary: "Art-filled culinary hall for nyama choma, ugali, and Kenyan craft tastings.",
-            story: "Housed in a converted warehouse in Westlands with murals by local illustrators and live acoustic sets.",
-            tip: "Order the spiced goat skewers with kachumbari tomato-onion salsa."
-          }
-        ]
+      {
+        name: "Amboseli National Park",
+        cat: "wildlife",
+        popularRank: "#3 Iconic Views",
+        duration: "2–3 Days",
+        price: "From $240",
+        color: "linear-gradient(135deg, #2D5A4C, #B8522E)",
+        desc: "Large elephant herds walking beneath snow-capped Mount Kilimanjaro across open plains."
+      },
+      {
+        name: "Diani Beach & Wasini Island",
+        cat: "coast",
+        popularRank: "#4 Top Beach Escape",
+        duration: "3–5 Days",
+        price: "From $150",
+        color: "linear-gradient(135deg, #16606E, #2A9D8F)",
+        desc: "White coral sands, Kisite Marine Park dolphin snorkeling, and Swahili seafood dhow cruises."
+      },
+      {
+        name: "Lake Nakuru & Lake Naivasha",
+        cat: "lakes",
+        popularRank: "#5 Rift Valley Gem",
+        duration: "1–2 Days",
+        price: "From $165",
+        color: "linear-gradient(135deg, #3A5A40, #588157)",
+        desc: "Flamingos, white rhinos, boat rides among hippos, and walking safaris at Crescent Island."
+      },
+      {
+        name: "Nairobi Cultural & Food Walk",
+        cat: "city",
+        popularRank: "#6 City Favorite",
+        duration: "Half Day (5 hrs)",
+        price: "From $65",
+        color: "linear-gradient(135deg, #6B3E26, #B8522E)",
+        desc: "KICC rooftop views, National Archives, Maasai Market crafts, and authentic nyama choma tasting."
+      },
+      {
+        name: "Hell's Gate & Mount Longonot",
+        cat: "coast",
+        popularRank: "",
+        duration: "Full Day",
+        price: "From $140",
+        color: "linear-gradient(135deg, #7F4F24, #936639)",
+        desc: "Cycle beside zebras and towering red cliffs, then hike dramatic volcanic gorges."
+      },
+      {
+        name: "Sheldrick Wildlife Elephant Orphanage",
+        cat: "city",
+        popularRank: "",
+        duration: "Half Day",
+        price: "From $85",
+        color: "linear-gradient(135deg, #4A5759, #1E4D3B)",
+        desc: "Watch rescued baby elephants enjoy their 11 AM mud bath and bottle feeding with keepers."
+      },
+      {
+        name: "Tsavo East & Tsavo West",
+        cat: "wildlife",
+        popularRank: "",
+        duration: "3 Days",
+        price: "From $420",
+        color: "linear-gradient(135deg, #9C4221, #C05621)",
+        desc: "Famous red-dust elephants, Mzima Springs underwater hippo tank, and Shetani lava flows."
       }
-    };
-
-    const phrases = [
-      { sw: "Jambo / Hujambo", en: "Hello (Casual / Polite)", cat: "greetings" },
-      { sw: "Habari yako?", en: "How are you?", cat: "greetings" },
-      { sw: "Nzuri sana", en: "Very good / Fine", cat: "greetings" },
-      { sw: "Asante sana", en: "Thank you very much", cat: "greetings" },
-      { sw: "Karibu", en: "Welcome / You're welcome", cat: "greetings" },
-      { sw: "Simba / Chui", en: "Lion / Leopard", cat: "safari" },
-      { sw: "Tembo / Twiga", en: "Elephant / Giraffe", cat: "safari" },
-      { sw: "Kifaru", en: "Rhinoceros", cat: "safari" },
-      { sw: "Pole pole", en: "Slowly, slowly (Take it easy)", cat: "safari" },
-      { sw: "Bei gani?", en: "How much is this?", cat: "market" },
-      { sw: "Punguza kidogo", en: "Reduce the price a little", cat: "market" },
-      { sw: "Tafadhali", en: "Please", cat: "market" }
     ];
 
-    const defaultPacking = [
-      "Sunscreen (SPF 30+) & polarized sunglasses",
-      "Light fleece or windbreaker for early mornings",
-      "Camera + extra memory card & power bank",
-      "Refillable water bottle",
-      "Small KES cash notes for tips & crafts",
-      "Binoculars & insect repellent"
+    const liveStops = [
+      { time: "06:30 AM", title: "Nairobi National Park Gate", note: "Sunrise game drive for rhinos, lions & plains wildlife." },
+      { time: "10:45 AM", title: "Sheldrick Elephant Orphanage", note: "11:00 AM keeper presentation & baby elephant feeding." },
+      { time: "01:00 PM", title: "Karen Blixen Coffee Garden", note: "Shaded garden lunch & fresh Kenyan AA coffee." },
+      { time: "03:00 PM", title: "AFEW Giraffe Centre", note: "Canopy walkway feeding with Rothschild's giraffes." }
     ];
 
-    let currentTourKey = "nairobiPark";
-    let completedMap = JSON.parse(localStorage.getItem("karibu_completed") || "{}");
-    let packedState = JSON.parse(localStorage.getItem("karibu_packed") || "{}");
-    let isLiveOnTour = true;
+    const swahiliList = [
+      { sw: "Jambo / Habari", en: "Hello / How are you?" },
+      { sw: "Asante sana", en: "Thank you very much" },
+      { sw: "Karibu", en: "Welcome" },
+      { sw: "Simba / Tembo / Twiga", en: "Lion / Elephant / Giraffe" },
+      { sw: "Pole pole", en: "Slowly, take it easy" }
+    ];
 
-    // Live Nairobi Clock (EAT = UTC+3)
+    let visitedStops = new Set(JSON.parse(localStorage.getItem("darius_live_stops") || "[]"));
+    let lastBookingSummary = "";
+
+    // Navigation Router
+    function navigateTo(pageId) {
+      document.querySelectorAll(".page-view").forEach(p => p.classList.remove("active"));
+      document.querySelectorAll(".nav-link").forEach(n => n.classList.remove("active"));
+      const targetPage = document.getElementById(`page-${pageId}`);
+      const targetNav = document.querySelector(`.nav-link[data-page="${pageId}"]`);
+      if (targetPage) targetPage.classList.add("active");
+      if (targetNav) targetNav.classList.add("active");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    document.getElementById("mainNav").addEventListener("click", (e) => {
+      const btn = e.target.closest(".nav-link");
+      if (btn) navigateTo(btn.dataset.page);
+    });
+
+    // Live Clock (Nairobi EAT)
     function updateClock() {
-      const now = new Date();
       const formatter = new Intl.DateTimeFormat("en-GB", {
         timeZone: "Africa/Nairobi",
         hour: "2-digit",
@@ -891,247 +893,174 @@
         second: "2-digit",
         hour12: false
       });
-      document.getElementById("nairobiClock").textContent = formatter.format(now);
+      document.getElementById("nairobiClock").textContent = formatter.format(new Date());
     }
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Status Toggle
-    document.getElementById("statusToggle").addEventListener("click", () => {
-      isLiveOnTour = !isLiveOnTour;
-      const dot = document.getElementById("statusDot");
-      const text = document.getElementById("statusText");
-      if (isLiveOnTour) {
-        dot.classList.remove("available");
-        text.textContent = "Live On Tour";
-      } else {
-        dot.classList.add("available");
-        text.textContent = "Available for Booking";
-      }
-    });
-
-    // Tour Tabs
-    document.getElementById("tourTabs").addEventListener("click", (e) => {
-      const btn = e.target.closest(".tour-tab");
-      if (!btn) return;
-      document.querySelectorAll(".tour-tab").forEach(t => t.classList.remove("active"));
-      btn.classList.add("active");
-      currentTourKey = btn.dataset.tour;
-      renderTour();
-    });
-
-    function getCompletedSet() {
-      return new Set(completedMap[currentTourKey] || []);
-    }
-
-    function saveCompletedSet(set) {
-      completedMap[currentTourKey] = Array.from(set);
-      localStorage.setItem("karibu_completed", JSON.stringify(completedMap));
-    }
-
-    function toggleStop(idx) {
-      const set = getCompletedSet();
-      if (set.has(idx)) set.delete(idx);
-      else set.add(idx);
-      saveCompletedSet(set);
-      renderTour();
-    }
-
-    function resetProgress() {
-      saveCompletedSet(new Set());
-      renderTour();
-      showToast("Tour stops reset");
-    }
-
-    function speakText(text) {
-      if (!("speechSynthesis" in window)) {
-        showToast("Audio playback not supported in this browser");
-        return;
-      }
-      window.speechSynthesis.cancel();
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.rate = 0.96;
-      window.speechSynthesis.speak(utter);
-      showToast("Playing guide audio...");
-    }
-
-    function renderTour() {
-      const tour = tours[currentTourKey];
-      const completed = getCompletedSet();
-      document.getElementById("tourTitle").textContent = tour.title;
-      document.getElementById("tourSubtitle").textContent = tour.subtitle;
-
-      const total = tour.stops.length;
-      const done = completed.size;
-      const pct = Math.round((done / total) * 100);
-      document.getElementById("progressLabel").textContent = `${done} of ${total} stops completed`;
-      document.getElementById("progressPercent").textContent = `${pct}%`;
-      document.getElementById("progressFill").style.width = `${pct}%`;
-
-      // Determine active stop (first uncompleted)
-      let activeIdx = tour.stops.findIndex((_, i) => !completed.has(i));
-
-      // Render SVG Route Map
-      const svg = document.getElementById("routeSvg");
-      const positions = [
-        { x: 75, y: 78 },
-        { x: 245, y: 42 },
-        { x: 415, y: 82 },
-        { x: 565, y: 45 }
-      ];
-
-      let pathD = `M ${positions[0].x} ${positions[0].y} ` +
-        positions.slice(1).map((p, i) => {
-          const prev = positions[i];
-          const cx = (prev.x + p.x) / 2;
-          return `Q ${cx} ${(prev.y + p.y) / 2 - 22}, ${p.x} ${p.y}`;
-        }).join(" ");
-
-      let svgHtml = `
-        <path d="${pathD}" fill="none" stroke="#D5CCBE" stroke-width="4" stroke-dasharray="7 6" stroke-linecap="round"/>
-      `;
-
-      tour.stops.forEach((stop, i) => {
-        const pos = positions[i];
-        const isDone = completed.has(i);
-        const isActive = i === activeIdx;
-        const fill = isDone ? "#1E4D3B" : isActive ? "#B8522E" : "#FFFFFF";
-        const stroke = isDone ? "#1E4D3B" : isActive ? "#B8522E" : "#8C857B";
-        const numColor = (isDone || isActive) ? "#FFFFFF" : "#1F2421";
-        const shortName = stop.name.length > 20 ? stop.name.slice(0, 19) + "…" : stop.name;
-
-        svgHtml += `
-          <g class="waypoint-node" onclick="scrollToStop(${i})">
-            <circle cx="${pos.x}" cy="${pos.y}" r="${isActive ? 16 : 13}" fill="${fill}" stroke="${stroke}" stroke-width="3"/>
-            <text x="${pos.x}" y="${pos.y + 4}" text-anchor="middle" style="fill:${numColor}; font-size:11px;">${isDone ? "✓" : i + 1}</text>
-            <text x="${pos.x}" y="${pos.y + 30}" text-anchor="middle">${shortName}</text>
-            <text x="${pos.x}" y="${pos.y - 20}" text-anchor="middle" style="fill:#7A736A; font-size:10px;">${stop.dist}</text>
-          </g>
-        `;
-      });
-      svg.innerHTML = svgHtml;
-
-      // Render Stop Cards
-      const list = document.getElementById("stopList");
-      list.innerHTML = tour.stops.map((stop, i) => {
-        const isDone = completed.has(i);
-        const isActive = i === activeIdx;
-        return `
-          <article class="stop-card ${isDone ? "completed" : ""} ${isActive ? "active-stop" : ""}" id="stop-card-${i}">
-            <div class="stop-top">
-              <div>
-                <span class="stop-time">${stop.time} ${isActive ? "• UP NEXT" : ""}</span>
-                <h3 class="stop-title">${i + 1}. ${stop.name}</h3>
-                <p class="stop-summary">${stop.summary}</p>
-              </div>
-              <button class="check-btn" onclick="toggleStop(${i})" title="Mark stop visited">✓</button>
-            </div>
-
-            <div class="stop-actions">
-              <button class="btn btn-outline" style="padding: 7px 11px; font-size: 0.8rem;" onclick="toggleStory(${i})">📖 Guide Story & Photo Tip</button>
-              <button class="btn btn-outline" style="padding: 7px 11px; font-size: 0.8rem;" onclick="speakText('${stop.name.replace(/'/g, "\\'")}. ${stop.story.replace(/'/g, "\\'")}')">🔊 Listen</button>
-            </div>
-
-            <div class="story-drawer" id="story-${i}">
-              <p>${stop.story}</p>
-              <div class="insider-box">
-                <strong>📸 Guide Photo & Etiquette Tip:</strong> ${stop.tip}
-              </div>
-            </div>
-          </article>
-        `;
-      }).join("");
-    }
-
-    function toggleStory(i) {
-      document.getElementById(`story-${i}`).classList.toggle("open");
-    }
-
-    function scrollToStop(i) {
-      const el = document.getElementById(`stop-card-${i}`);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-        document.getElementById(`story-${i}`).classList.add("open");
-      }
-    }
-
-    // Pocket Toolkit Tabs
-    document.querySelectorAll(".tool-tab").forEach(tab => {
-      tab.addEventListener("click", () => {
-        document.querySelectorAll(".tool-tab").forEach(t => t.classList.remove("active"));
-        document.querySelectorAll(".tool-panel").forEach(p => p.classList.remove("active"));
-        tab.classList.add("active");
-        document.getElementById(`panel-${tab.dataset.tool}`).classList.add("active");
-      });
-    });
-
-    // Swahili Phrasebook
-    let currentCat = "all";
-    function renderPhrases() {
-      const grid = document.getElementById("phraseGrid");
-      const filtered = currentCat === "all" ? phrases : phrases.filter(p => p.cat === currentCat);
-      grid.innerHTML = filtered.map(p => `
-        <div class="phrase-item">
-          <div>
-            <strong style="color: var(--secondary); display: block;">${p.sw}</strong>
-            <span style="font-size: 0.8rem; color: var(--muted);">${p.en}</span>
+    // Render Tourist Site Cards
+    function createSiteCardHTML(site) {
+      return `
+        <article class="site-card">
+          <div class="site-banner" style="background: ${site.color};">
+            <span class="tag">${site.duration}</span>
+            <h3 style="font-size: 1.08rem; line-height: 1.25;">${site.name}</h3>
           </div>
-          <button class="btn btn-outline" style="padding: 6px 9px;" onclick="speakText('${p.sw.replace(/'/g, "\\'")}')" title="Pronounce">🔊</button>
+          <div class="site-body">
+            <p style="font-size: 0.86rem; color: var(--muted); margin-bottom: 14px;">${site.desc}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 8px;">
+              <span class="price-tag">${site.price}</span>
+              <button class="btn btn-primary" style="padding: 7px 12px; font-size: 0.8rem;" onclick="bookSpecificSite('${site.name.replace(/'/g, "\\'")}')">Book Site</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function renderAllSites(filterCat = "all") {
+      const list = filterCat === "all" ? touristSites : touristSites.filter(s => s.cat === filterCat);
+      document.getElementById("allSitesGrid").innerHTML = list.map(createSiteCardHTML).join("");
+    }
+
+    document.getElementById("siteCategoryFilters").addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      document.querySelectorAll("#siteCategoryFilters .chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      renderAllSites(chip.dataset.cat);
+    });
+
+    function renderHomeAndPopular() {
+      // Home featured (top 3)
+      document.getElementById("homeFeaturedGrid").innerHTML = touristSites.slice(0, 3).map(createSiteCardHTML).join("");
+
+      // Most Popular Areas (top 6 ranked)
+      const popular = touristSites.filter(s => s.popularRank);
+      document.getElementById("popularAreasGrid").innerHTML = popular.map(site => `
+        <div class="popular-card">
+          <span class="rank-badge">${site.popularRank}</span>
+          <h3 style="color: var(--secondary); padding-right: 110px; margin-bottom: 6px;">${site.name}</h3>
+          <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 12px;">${site.desc}</p>
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <span style="font-size: 0.82rem; font-weight: 600;">⏱️ ${site.duration} • <span class="price-tag">${site.price}</span></span>
+            <button class="btn btn-secondary" style="padding: 7px 13px; font-size: 0.82rem;" onclick="bookSpecificSite('${site.name.replace(/'/g, "\\'")}')">Reserve Tour</button>
+          </div>
         </div>
       `).join("");
     }
 
-    document.getElementById("phraseFilters").addEventListener("click", (e) => {
-      const chip = e.target.closest(".chip");
-      if (!chip) return;
-      document.querySelectorAll("#phraseFilters .chip").forEach(c => c.classList.remove("active"));
-      chip.classList.add("active");
-      currentCat = chip.dataset.cat;
-      renderPhrases();
-    });
-
-    // Currency Converter
-    const rates = { USD: 129, EUR: 138, GBP: 164 };
-    const symbols = { USD: "$", EUR: "€", GBP: "£" };
-
-    function updateCurrency() {
-      const kes = parseFloat(document.getElementById("kesInput").value) || 0;
-      const curr = document.getElementById("targetCurrency").value;
-      const converted = (kes / rates[curr]).toFixed(2);
-      document.getElementById("convertedOutput").textContent = `${symbols[curr]}${converted}`;
+    function bookSpecificSite(siteName) {
+      navigateTo("booking");
+      const select = document.getElementById("tourDestination");
+      for (let opt of select.options) {
+        if (opt.value.toLowerCase().includes(siteName.toLowerCase().slice(0, 12))) {
+          select.value = opt.value;
+          break;
+        }
+      }
+      updateBookingEstimate();
+      showToast(`Selected: ${siteName}`);
     }
 
-    function setKes(val) {
-      document.getElementById("kesInput").value = val;
-      updateCurrency();
-    }
+    // Live Tour Guide Companion
+    function renderLiveStops() {
+      const total = liveStops.length;
+      const done = visitedStops.size;
+      const pct = Math.round((done / total) * 100);
+      document.getElementById("liveProgressText").textContent = `${done} of ${total} stops visited`;
+      document.getElementById("liveProgressPct").textContent = `${pct}%`;
+      document.getElementById("liveProgressFill").style.width = `${pct}%`;
 
-    document.getElementById("kesInput").addEventListener("input", updateCurrency);
-    document.getElementById("targetCurrency").addEventListener("change", updateCurrency);
-
-    // Packing Checklist
-    function renderPacking() {
-      const container = document.getElementById("packingList");
-      container.innerHTML = defaultPacking.map((item, idx) => {
-        const checked = !!packedState[idx];
+      document.getElementById("liveStopsContainer").innerHTML = liveStops.map((s, idx) => {
+        const isDone = visitedStops.has(idx);
         return `
-          <label class="pack-item ${checked ? "checked" : ""}">
-            <input type="checkbox" ${checked ? "checked" : ""} onchange="togglePack(${idx})"/>
-            <span>${item}</span>
-          </label>
+          <div class="stop-item ${isDone ? "done" : ""}">
+            <div>
+              <span style="font-size: 0.75rem; font-weight: 700; color: var(--primary);">${s.time}</span>
+              <h4 style="margin: 2px 0;">${idx + 1}. ${s.title}</h4>
+              <p style="font-size: 0.84rem; color: var(--muted);">${s.note}</p>
+            </div>
+            <button class="btn ${isDone ? "btn-secondary" : "btn-outline"}" style="padding: 7px 11px; font-size: 0.8rem;" onclick="toggleLiveStop(${idx})">
+              ${isDone ? "✓ Visited" : "Mark Done"}
+            </button>
+          </div>
         `;
       }).join("");
     }
 
-    function togglePack(idx) {
-      packedState[idx] = !packedState[idx];
-      localStorage.setItem("karibu_packed", JSON.stringify(packedState));
-      renderPacking();
+    function toggleLiveStop(idx) {
+      if (visitedStops.has(idx)) visitedStops.delete(idx);
+      else visitedStops.add(idx);
+      localStorage.setItem("darius_live_stops", JSON.stringify(Array.from(visitedStops)));
+      renderLiveStops();
     }
 
-    // Modals & Toasts
-    function openModal(id) { document.getElementById(id).classList.add("open"); }
-    function closeModal(id) { document.getElementById(id).classList.remove("open"); }
+    function resetLiveStops() {
+      visitedStops.clear();
+      localStorage.setItem("darius_live_stops", "[]");
+      renderLiveStops();
+      showToast("Live tour stops reset");
+    }
+
+    function renderSwahili() {
+      document.getElementById("swahiliQuickList").innerHTML = swahiliList.map(item => `
+        <div style="display: flex; justify-content: space-between; padding: 8px 10px; background: var(--surface-alt); border-radius: 10px; font-size: 0.86rem;">
+          <strong style="color: var(--secondary);">${item.sw}</strong>
+          <span style="color: var(--muted);">${item.en}</span>
+        </div>
+      `).join("");
+    }
+
+    function convertKes() {
+      const kes = parseFloat(document.getElementById("kesAmount").value) || 0;
+      document.getElementById("usdOut").textContent = `$${(kes / 129).toFixed(2)}`;
+      document.getElementById("eurOut").textContent = `€${(kes / 138).toFixed(2)}`;
+      document.getElementById("gbpOut").textContent = `£${(kes / 164).toFixed(2)}`;
+    }
+
+    // Booking Form Logic
+    function updateBookingEstimate() {
+      const select = document.getElementById("tourDestination");
+      const rate = parseFloat(select.options[select.selectedIndex].dataset.rate || 130);
+      const guests = parseInt(document.getElementById("guestCount").value) || 1;
+      document.getElementById("bookingEstimate").textContent = `$${rate * guests} USD`;
+    }
+
+    function handleBookingSubmit(e) {
+      e.preventDefault();
+      const name = document.getElementById("guestName").value.trim();
+      const contact = document.getElementById("guestEmail").value.trim();
+      const dest = document.getElementById("tourDestination").value;
+      const date = document.getElementById("tourDate").value;
+      const guests = document.getElementById("guestCount").value;
+      const vehicle = document.getElementById("vehicleType").value;
+      const notes = document.getElementById("specialNotes").value.trim();
+
+      lastBookingSummary = `Hello Darius Deedea! I'd like to book:\n• Tour: ${dest}\n• Date: ${date}\n• Guests: ${guests}\n• Vehicle: ${vehicle}\n• Name: ${name} (${contact})\n• Notes: ${notes || "None"}`;
+
+      document.getElementById("bookingSummaryText").textContent =
+        `Thank you, ${name}! Your request for ${dest} on ${date} (${guests} guests) is ready.`;
+      document.getElementById("bookingConfirmation").style.display = "block";
+      showToast("Booking request prepared!");
+    }
+
+    function sendBookingWhatsApp() {
+      const url = `https://wa.me/254712345678?text=${encodeURIComponent(lastBookingSummary)}`;
+      window.open(url, "_blank", "noopener");
+    }
+
+    // Contact Page Actions
+    function copyContactDetails() {
+      const card = "Darius Deedea Tour Guide | Phone/WhatsApp: +254 712 345 678 | Email: darius.deedea@kenyatours.co.ke | Nairobi, Kenya";
+      navigator.clipboard?.writeText(card);
+      showToast("Darius Deedea contact card copied!");
+    }
+
+    function handleContactSubmit(e) {
+      e.preventDefault();
+      e.target.reset();
+      showToast("Message sent to Darius Deedea!");
+    }
 
     function showToast(msg) {
       const t = document.getElementById("toast");
@@ -1140,33 +1069,13 @@
       setTimeout(() => t.classList.remove("show"), 2600);
     }
 
-    function copyGuideCard() {
-      const text = "Darius Deedea Tour Guide | Phone/WhatsApp: +254 712 345 678 | Land Cruiser: KCD 412S";
-      navigator.clipboard?.writeText(text);
-      showToast("Guide contact card copied!");
-    }
-
-    function submitDetour() {
-      const val = document.getElementById("detourInput").value.trim();
-      if (!val) return showToast("Please enter a quick note first");
-      document.getElementById("detourInput").value = "";
-      closeModal("detourModal");
-      showToast("Request sent to Darius Deedea!");
-    }
-
-    function submitReview() {
-      const val = document.getElementById("reviewText").value.trim();
-      if (!val) return showToast("Write a short note first");
-      document.getElementById("reviewText").value = "";
-      closeModal("reviewModal");
-      showToast("Asante! Review saved for Darius Deedea.");
-    }
-
-    // Init
-    renderTour();
-    renderPhrases();
-    updateCurrency();
-    renderPacking();
+    // Initialize App
+    renderHomeAndPopular();
+    renderAllSites();
+    renderLiveStops();
+    renderSwahili();
+    convertKes();
+    updateBookingEstimate();
   </script>
 </body>
 </html>
