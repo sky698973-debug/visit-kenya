@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Karibu Kenya — Personal Safari & City Tour Companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #FAF6F0;
+      --surface: #FFFFFF;
+      --surface-alt: #F3ECE1;
+      --primary: #B8522E;
+      --primary-dark: #933E20;
+      --secondary: #1E4D3B;
+      --secondary-light: #E6F0EC;
+      --accent: #D99B26;
+      --text: #1F2421;
+      --muted: #5C635E;
+      --border: #E4DDD2;
+      --shadow: 0 10px 28px rgba(31, 36, 33, 0.08);
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+      padding-bottom: 90px;
+    }
+
+    h1, h2, h3, .serif { font-family: 'Fraunces', serif; }
+
+    /* Top Guide Header */
+    .guide-header {
+      background: linear-gradient(135deg, var(--secondary) 0%, #143629 100%);
+      color: #fff;
+      padding: 20px 18px 24px;
+      border-bottom-left-radius: 26px;
+      border-bottom-right-radius: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .container {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    .guide-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .guide-profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .avatar {
+      width: 54px;
+      height: 54px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: var(--secondary);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      font-size: 1.25rem;
+      border: 2px solid #fff;
+      flex-shrink: 0;
+    }
+
+    .badge-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 4px;
+      flex-wrap: wrap;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.14);
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4ADE80;
+      box-shadow: 0 0 8px #4ADE80;
+    }
+
+    .dot.available { background: var(--accent); box-shadow: 0 0 8px var(--accent); }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .clock-box {
+      background: rgba(255, 255, 255, 0.12);
+      padding: 6px 11px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      text-align: right;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 12px;
+      padding: 10px 14px;
+      font-family: inherit;
+      font-weight: 600;
+      font-size: 0.86rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .btn:active { transform: scale(0.97); }
+    .btn-primary { background: var(--primary); color: #fff; }
+    .btn-primary:hover { background: var(--primary-dark); }
+    .btn-accent { background: var(--accent); color: #1F2421; }
+    .btn-outline {
+      background: var(--surface);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost-light {
+      background: rgba(255,255,255,0.16);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.28);
+    }
+
+    /* Tour Selector Tabs */
+    .tour-switcher {
+      margin-top: 18px;
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+    .tour-switcher::-webkit-scrollbar { display: none; }
+
+    .tour-tab {
+      background: rgba(255, 255, 255, 0.12);
+      color: #E5EFEA;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 14px;
+      border-radius: 12px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      white-space: nowrap;
+      cursor: pointer;
+    }
+
+    .tour-tab.active {
+      background: #fff;
+      color: var(--secondary);
+      border-color: #fff;
+    }
+
+    /* Cards & Sections */
+    .section { margin-top: 20px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      gap: 10px;
+    }
+
+    .section-title {
+      font-size: 1.2rem;
+      color: var(--secondary);
+    }
+
+    /* Progress Bar */
+    .progress-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.84rem;
+      color: var(--muted);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .progress-track {
+      height: 10px;
+      background: var(--surface-alt);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 999px;
+      transition: width 0.35s ease;
+    }
+
+    /* Interactive Route SVG Map */
+    .route-map-wrap {
+      background: #F4EFE6;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      padding: 12px;
+      margin-top: 12px;
+      overflow-x: auto;
+    }
+
+    .route-map-wrap svg {
+      width: 100%;
+      min-width: 520px;
+      height: 135px;
+      display: block;
+    }
+
+    .waypoint-node { cursor: pointer; }
+    .waypoint-node text {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      fill: var(--text);
+    }
+
+    /* Itinerary Stops */
+    .stop-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .stop-card {
+      background: var(--surface);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+
+    .stop-card.active-stop {
+      border-color: var(--primary);
+      box-shadow: 0 8px 24px rgba(184, 82, 46, 0.12);
+    }
+
+    .stop-card.completed {
+      background: #F9FBF9;
+      border-color: #C7DDD3;
+    }
+
+    .stop-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .stop-time {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--primary);
+      background: #FCEEE9;
+      padding: 3px 9px;
+      border-radius: 8px;
+      margin-bottom: 5px;
+    }
+
+    .stop-card.completed .stop-time {
+      color: var(--secondary);
+      background: var(--secondary-light);
+    }
+
+    .stop-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .stop-summary {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    .check-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: #fff;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      color: transparent;
+      flex-shrink: 0;
+    }
+
+    .stop-card.completed .check-btn {
+      background: var(--secondary);
+      border-color: var(--secondary);
+      color: #fff;
+    }
+
+    .stop-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
+
+    .story-drawer {
+      display: none;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px dashed var(--border);
+      font-size: 0.9rem;
+    }
+
+    .story-drawer.open { display: block; }
+
+    .insider-box {
+      background: var(--surface-alt);
+      padding: 11px 13px;
+      border-radius: 11px;
+      margin-top: 8px;
+      font-size: 0.84rem;
+    }
+
+    /* Pocket Toolkit Tabs */
+    .tool-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      background: var(--surface-alt);
+      padding: 5px;
+      border-radius: 12px;
+      margin-bottom: 14px;
+    }
+
+    .tool-tab {
+      border: none;
+      background: transparent;
+      padding: 9px 8px;
+      border-radius: 9px;
+      font-family: inherit;
+      font-size: 0.83rem;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+    }
+
+    .tool-tab.active {
+      background: var(--surface);
+      color: var(--secondary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .tool-panel { display: none; }
+    .tool-panel.active { display: block; }
+
+    /* Swahili Phrasebook */
+    .phrase-filters {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+
+    .chip {
+      padding: 5px 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .chip.active {
+      background: var(--secondary);
+      color: #fff;
+      border-color: var(--secondary);
+    }
+
+    .phrase-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+    }
+
+    .phrase-item {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 11px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Currency Converter */
+    .converter-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .input-group input, .input-group select, .modal textarea, .modal input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 0.95rem;
+      background: #fff;
+    }
+
+    .tip-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top: 8px;
+    }
+
+    /* Packing Checklist */
+    .pack-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+    .pack-item:last-child { border-bottom: none; }
+    .pack-item input { width: 18px; height: 18px; accent-color: var(--secondary); }
+    .pack-item.checked span { text-decoration: line-through; color: var(--muted); }
+
+    /* Sticky Bottom Action Bar */
+    .bottom-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      z-index: 40;
+    }
+
+    .bottom-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      display: flex;
+      gap: 10px;
+    }
+
+    .bottom-inner .btn { flex: 1; }
+
+    /* Modals */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 26, 23, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 60;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: var(--surface);
+      border-radius: 20px;
+      max-width: 440px;
+      width: 100%;
+      padding: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    .modal h3 { margin-bottom: 6px; color: var(--secondary); }
+    .modal p { font-size: 0.88rem; color: var(--muted); margin-bottom: 12px; }
+    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; margin-top: 14px; }
+
+    .toast {
+      position: fixed;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-20px);
+      background: var(--secondary);
+      color: #fff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.25s ease;
+      z-index: 80;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+  <div id="toast" class="toast">Copied to clipboard!</div>
+
+  <!-- Guide Header -->
+  <header class="guide-header">
+    <div class="container">
+      <div class="guide-top-row">
+        <div class="guide-profile">
+          <div class="avatar">JM</div>
+          <div>
+            <h1 style="font-size: 1.3rem; line-height: 1.2;">Juma Mwangi • Safari & City Guide</h1>
+            <div class="badge-row">
+              <button id="statusToggle" class="status-pill" title="Click to toggle availability">
+                <span id="statusDot" class="dot"></span>
+                <span id="statusText">Live On Tour</span>
+              </button>
+              <span style="font-size: 0.78rem; color: #D7E6DF;">KPSGA Silver Certified • EN / SW</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header-actions">
+          <div class="clock-box">
+            <div style="font-size: 0.68rem; opacity: 0.8;">NAIROBI (EAT)</div>
+            <strong id="nairobiClock">--:--</strong>
+          </div>
+          <button class="btn btn-accent" onclick="openModal('sosModal')">SOS / Contact</button>
+        </div>
+      </div>
+
+      <!-- Active Tour Switcher -->
+      <div class="tour-switcher" id="tourTabs">
+        <button class="tour-tab active" data-tour="nairobiPark">🦁 Nairobi Park & Giraffe Centre</button>
+        <button class="tour-tab" data-tour="maasaiMara">🌅 Maasai Mara 3-Day Safari</button>
+        <button class="tour-tab" data-tour="cityWalk">☕ Nairobi Cultural & Food Walk</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Live Tour Progress & Visual Route -->
+    <section class="section card">
+      <div class="section-header">
+        <div>
+          <h2 class="section-title" id="tourTitle">Nairobi National Park & Giraffe Centre</h2>
+          <p style="font-size: 0.84rem; color: var(--muted);" id="tourSubtitle">Full-day wildlife & conservation loop • Land Cruiser 4x4 (KCD 412S)</p>
+        </div>
+        <button class="btn btn-outline" onclick="resetProgress()" style="font-size: 0.78rem; padding: 6px 10px;">Reset Stops</button>
+      </div>
+
+      <div class="progress-meta">
+        <span id="progressLabel">0 of 4 stops completed</span>
+        <span id="progressPercent">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+
+      <!-- Interactive SVG Route Map -->
+      <div class="route-map-wrap">
+        <svg id="routeSvg" viewBox="0 0 640 135" aria-label="Interactive Tour Route Map"></svg>
+      </div>
+    </section>
+
+    <!-- Live Itinerary & Guide Stories -->
+    <section class="section">
+      <div class="section-header">
+        <h2 class="section-title">Live Itinerary & Field Notes</h2>
+        <span style="font-size: 0.8rem; color: var(--muted);">Tap ✓ as we visit each stop</span>
+      </div>
+      <div class="stop-list" id="stopList"></div>
+    </section>
+
+    <!-- Tourist Pocket Toolkit -->
+    <section class="section card">
+      <div class="section-header">
+        <h2 class="section-title">Tourist Pocket Toolkit</h2>
+      </div>
+
+      <div class="tool-tabs">
+        <button class="tool-tab active" data-tool="swahili">🗣️ Swahili</button>
+        <button class="tool-tab" data-tool="currency">💱 KES Converter</button>
+        <button class="tool-tab" data-tool="packing">🎒 Daypack</button>
+      </div>
+
+      <!-- Panel 1: Swahili Phrasebook -->
+      <div class="tool-panel active" id="panel-swahili">
+        <div class="phrase-filters" id="phraseFilters">
+          <button class="chip active" data-cat="all">All</button>
+          <button class="chip" data-cat="greetings">Greetings</button>
+          <button class="chip" data-cat="safari">Safari</button>
+          <button class="chip" data-cat="market">Market</button>
+        </div>
+        <div class="phrase-grid" id="phraseGrid"></div>
+      </div>
+
+      <!-- Panel 2: KES Currency & Tipping Calculator -->
+      <div class="tool-panel" id="panel-currency">
+        <div class="converter-row">
+          <div class="input-group">
+            <label for="kesInput">Kenyan Shillings (KES)</label>
+            <input type="number" id="kesInput" value="2500" min="0" step="100" />
+          </div>
+          <div class="input-group">
+            <label for="targetCurrency">Convert To</label>
+            <select id="targetCurrency">
+              <option value="USD">USD ($) — US Dollar</option>
+              <option value="EUR">EUR (€) — Euro</option>
+              <option value="GBP">GBP (£) — British Pound</option>
+            </select>
+          </div>
+        </div>
+        <div style="background: var(--secondary-light); padding: 12px 14px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center;">
+          <span style="font-size: 0.86rem; font-weight: 600; color: var(--secondary);">Estimated Value</span>
+          <strong id="convertedOutput" style="font-size: 1.25rem; color: var(--secondary);">$19.38</strong>
+        </div>
+        <div class="tip-pills">
+          <button class="chip" onclick="setKes(500)">Coffee / Snack (500 KES)</button>
+          <button class="chip" onclick="setKes(2000)">Craft Souvenir (2,000 KES)</button>
+          <button class="chip" onclick="setKes(6500)">Full-Day Guide Tip (6,500 KES)</button>
+        </div>
+      </div>
+
+      <!-- Panel 3: Daypack Checklist -->
+      <div class="tool-panel" id="panel-packing">
+        <div id="packingList"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky Bottom Action Bar -->
+  <div class="bottom-bar">
+    <div class="bottom-inner">
+      <button class="btn btn-primary" onclick="openModal('detourModal')">📍 Request Stop / Detour</button>
+      <button class="btn btn-outline" onclick="openModal('reviewModal')">⭐ Tip & Leave Review</button>
+    </div>
+  </div>
+
+  <!-- SOS / Contact Modal -->
+  <div class="modal-backdrop" id="sosModal">
+    <div class="modal">
+      <h3>Guide & Emergency Contacts</h3>
+      <p>Save these numbers before heading into low-signal park zones.</p>
+      <div style="display: flex; flex-direction: column; gap: 8px; font-size: 0.9rem;">
+        <div style="padding: 10px; background: var(--surface-alt); border-radius: 10px;">
+          <strong>Guide Juma (Direct / WhatsApp):</strong><br/>+254 712 345 678
+        </div>
+        <div style="padding: 10px; background: var(--surface-alt); border-radius: 10px;">
+          <strong>Vehicle & Meeting Point:</strong><br/>Toyota Land Cruiser • Plate KCD 412S
+        </div>
+        <div style="padding: 10px; background: #FCEEE9; border-radius: 10px; color: var(--primary-dark);">
+          <strong>Kenya Emergency / Tourist Helpline:</strong><br/>999 / 112 • KWS Hotline: +254 800 597 000
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="copyGuideCard()">Copy Contact Card</button>
+        <button class="btn btn-primary" onclick="closeModal('sosModal')">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Request Stop / Detour Modal -->
+  <div class="modal-backdrop" id="detourModal">
+    <div class="modal">
+      <h3>Request a Stop or Detour</h3>
+      <p>Need a coffee break, ATM, pharmacy, or extra photo stop? Send a quick note to your guide.</p>
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" id="detourInput" placeholder="e.g., Quick espresso stop or souvenir gallery..." />
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('detourModal')">Cancel</button>
+        <button class="btn btn-primary" onclick="submitDetour()">Send to Guide</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Review Modal -->
+  <div class="modal-backdrop" id="reviewModal">
+    <div class="modal">
+      <h3>Rate Today's Experience</h3>
+      <p>Thank you for exploring Kenya with me! Your feedback helps future travelers.</p>
+      <textarea id="reviewText" rows="3" placeholder="Share your favorite wildlife sighting or moment..."></textarea>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal('reviewModal')">Close</button>
+        <button class="btn btn-primary" onclick="submitReview()">Submit Note</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const tours = {
+      nairobiPark: {
+        title: "Nairobi National Park & Giraffe Centre",
+        subtitle: "Full-day wildlife & conservation loop • Land Cruiser 4x4 (KCD 412S)",
+        stops: [
+          {
+            time: "06:30 AM",
+            name: "Nairobi National Park Main Gate",
+            dist: "Start",
+            summary: "Golden-hour game drive tracking black rhinos, lions, and giraffes against the city skyline.",
+            story: "Founded in 1946, this is the only wildlife capital park in the world. Keep your camera ready near Ivory Burning Site and Kingfisher Picnic Area where lion prides often sunbathe.",
+            tip: "Use fast shutter speed (1/1000s+) from the pop-up roof; morning breeze can be chilly so keep a light jacket handy."
+          },
+          {
+            time: "10:45 AM",
+            name: "Sheldrick Wildlife Trust",
+            dist: "+9 km",
+            summary: "Public 11 AM mud-bath & milk feeding session for rescued baby elephants.",
+            story: "Each orphaned calf has a dedicated keeper who sleeps beside them in shifts. Listen closely as the head keeper introduces every elephant's rescue story by name.",
+            tip: "Stand near the front rope by 10:50 AM for unobstructed eye-level photos when the calves charge in."
+          },
+          {
+            time: "01:00 PM",
+            name: "Tamambo Karen Blixen Coffee Garden",
+            dist: "+6 km",
+            summary: "Relaxed garden lunch under century-old jacaranda trees in Karen.",
+            story: "Located beside the historic 1917 farmhouse made famous in 'Out of Africa', this shaded courtyard serves fresh Kenyan AA coffee and grilled lake tilapia.",
+            tip: "Try the Kenyan passion fruit juice and ask for freshly roasted Peaberry beans if buying coffee."
+          },
+          {
+            time: "03:00 PM",
+            name: "AFEW Giraffe Centre",
+            dist: "+4 km",
+            summary: "Elevated wooden walkway encounter with endangered Rothschild's giraffes.",
+            story: "Born in 1979 to save the Rothschild's giraffe from extinction in western Kenya, this sanctuary lets you meet giraffes face-to-face at canopy height.",
+            tip: "Hold one pellet between thumb and forefinger—never feed from an open palm, and avoid touching their sensitive muzzles."
+          }
+        ]
+      },
+      maasaiMara: {
+        title: "Maasai Mara 3-Day Safari",
+        subtitle: "Big Five expedition • Mara Triangle & Talek River Plains",
+        stops: [
+          {
+            time: "Day 1 • 08:00 AM",
+            name: "Great Rift Valley Escarpment",
+            dist: "Start",
+            summary: "Panoramic viewpoint overlooking Mount Longonot and the volcanic valley floor.",
+            story: "Stretching 6,000 km from Lebanon to Mozambique, the Rift Valley drops dramatically right before your eyes at Mai Mahiu.",
+            tip: "Best morning light faces west—step to the far left terrace for wide-angle landscape shots."
+          },
+          {
+            time: "Day 1 • 04:00 PM",
+            name: "Sunset Game Drive • Sekenani Plains",
+            dist: "+195 km",
+            summary: "First afternoon traverse searching for cheetahs, elephants, and topi.",
+            story: "Late afternoon cools the savanna, bringing big cats out from acacia shade onto termite mounds to scan the horizon.",
+            tip: "Switch to warm white balance during golden hour for rich amber grass tones."
+          },
+          {
+            time: "Day 2 • 06:15 AM",
+            name: "Mara River Crossing Lookout",
+            dist: "+32 km",
+            summary: "Full-day expedition along hippo pools and crocodile-lined river bends.",
+            story: "Even outside peak migration months, resident pods of 40+ hippos and Nile crocodiles make the Mara River dramatic year-round.",
+            tip: "Pack binoculars—martial eagles and lilac-breasted rollers perch on dead riverine fig trees."
+          },
+          {
+            time: "Day 3 • 07:30 AM",
+            name: "Maasai Manyatta Cultural Visit",
+            dist: "+14 km",
+            summary: "Guided welcome into a traditional Maasai homestead with elders and warriors.",
+            story: "Learn how homes are built from acacia wood, mud, and cow dung, and how beadwork colors signify age, marriage, and bravery.",
+            tip: "Always ask before taking close-up portraits; community craft purchases go directly to village families."
+          }
+        ]
+      },
+      cityWalk: {
+        title: "Nairobi Cultural & Food Walk",
+        subtitle: "Downtown heritage, rooftop views & Kenyan specialty coffee",
+        stops: [
+          {
+            time: "09:30 AM",
+            name: "Kenya National Archives",
+            dist: "Start",
+            summary: "Murumbi Gallery collection of East African royal stools, textiles, and masks.",
+            story: "Curated by Kenya's second Vice President Joseph Murumbi, this archive preserves rare pre-colonial artifacts from across Africa.",
+            tip: "Meet right beneath the iconic concrete canopy outside—one of Nairobi's easiest landmarks."
+          },
+          {
+            time: "11:00 AM",
+            name: "KICC Rooftop Helipad",
+            dist: "+0.8 km",
+            summary: "360-degree skyline panorama from the 28th-floor circular tower.",
+            story: "Inspired by a traditional African hut, the Kenyatta International Convention Centre offers clear views all the way to Ngong Hills.",
+            tip: "Bring a passport or ID copy for lobby security check-in."
+          },
+          {
+            time: "12:45 PM",
+            name: "Maasai Market & City Market",
+            dist: "+1.1 km",
+            summary: "Open-air artisan stalls for hand-woven kiondo baskets, soapstone, and beadwork.",
+            story: "Artisans travel from Kisii, Machakos, and Kajiado to sell directly to visitors without middlemen.",
+            tip: "Smile, say 'Habari yako', and bargain warmly—aim for 60–70% of the initial asking price."
+          },
+          {
+            time: "02:30 PM",
+            name: "Nairobi Street Kitchen",
+            dist: "+3.5 km",
+            summary: "Art-filled culinary hall for nyama choma, ugali, and Kenyan craft tastings.",
+            story: "Housed in a converted warehouse in Westlands with murals by local illustrators and live acoustic sets.",
+            tip: "Order the spiced goat skewers with kachumbari tomato-onion salsa."
+          }
+        ]
+      }
+    };
+
+    const phrases = [
+      { sw: "Jambo / Hujambo", en: "Hello (Casual / Polite)", cat: "greetings" },
+      { sw: "Habari yako?", en: "How are you?", cat: "greetings" },
+      { sw: "Nzuri sana", en: "Very good / Fine", cat: "greetings" },
+      { sw: "Asante sana", en: "Thank you very much", cat: "greetings" },
+      { sw: "Karibu", en: "Welcome / You're welcome", cat: "greetings" },
+      { sw: "Simba / Chui", en: "Lion / Leopard", cat: "safari" },
+      { sw: "Tembo / Twiga", en: "Elephant / Giraffe", cat: "safari" },
+      { sw: "Kifaru", en: "Rhinoceros", cat: "safari" },
+      { sw: "Pole pole", en: "Slowly, slowly (Take it easy)", cat: "safari" },
+      { sw: "Bei gani?", en: "How much is this?", cat: "market" },
+      { sw: "Punguza kidogo", en: "Reduce the price a little", cat: "market" },
+      { sw: "Tafadhali", en: "Please", cat: "market" }
+    ];
+
+    const defaultPacking = [
+      "Sunscreen (SPF 30+) & polarized sunglasses",
+      "Light fleece or windbreaker for early mornings",
+      "Camera + extra memory card & power bank",
+      "Refillable water bottle",
+      "Small KES cash notes for tips & crafts",
+      "Binoculars & insect repellent"
+    ];
+
+    let currentTourKey = "nairobiPark";
+    let completedMap = JSON.parse(localStorage.getItem("karibu_completed") || "{}");
+    let packedState = JSON.parse(localStorage.getItem("karibu_packed") || "{}");
+    let isLiveOnTour = true;
+
+    // Live Nairobi Clock (EAT = UTC+3)
+    function updateClock() {
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Africa/Nairobi",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: false
+      });
+      document.getElementById("nairobiClock").textContent = formatter.format(now);
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    // Status Toggle
+    document.getElementById("statusToggle").addEventListener("click", () => {
+      isLiveOnTour = !isLiveOnTour;
+      const dot = document.getElementById("statusDot");
+      const text = document.getElementById("statusText");
+      if (isLiveOnTour) {
+        dot.classList.remove("available");
+        text.textContent = "Live On Tour";
+      } else {
+        dot.classList.add("available");
+        text.textContent = "Available for Booking";
+      }
+    });
+
+    // Tour Tabs
+    document.getElementById("tourTabs").addEventListener("click", (e) => {
+      const btn = e.target.closest(".tour-tab");
+      if (!btn) return;
+      document.querySelectorAll(".tour-tab").forEach(t => t.classList.remove("active"));
+      btn.classList.add("active");
+      currentTourKey = btn.dataset.tour;
+      renderTour();
+    });
+
+    function getCompletedSet() {
+      return new Set(completedMap[currentTourKey] || []);
+    }
+
+    function saveCompletedSet(set) {
+      completedMap[currentTourKey] = Array.from(set);
+      localStorage.setItem("karibu_completed", JSON.stringify(completedMap));
+    }
+
+    function toggleStop(idx) {
+      const set = getCompletedSet();
+      if (set.has(idx)) set.delete(idx);
+      else set.add(idx);
+      saveCompletedSet(set);
+      renderTour();
+    }
+
+    function resetProgress() {
+      saveCompletedSet(new Set());
+      renderTour();
+      showToast("Tour stops reset");
+    }
+
+    function speakText(text) {
+      if (!("speechSynthesis" in window)) {
+        showToast("Audio playback not supported in this browser");
+        return;
+      }
+      window.speechSynthesis.cancel();
+      const utter = new SpeechSynthesisUtterance(text);
+      utter.rate = 0.96;
+      window.speechSynthesis.speak(utter);
+      showToast("Playing guide audio...");
+    }
+
+    function renderTour() {
+      const tour = tours[currentTourKey];
+      const completed = getCompletedSet();
+      document.getElementById("tourTitle").textContent = tour.title;
+      document.getElementById("tourSubtitle").textContent = tour.subtitle;
+
+      const total = tour.stops.length;
+      const done = completed.size;
+      const pct = Math.round((done / total) * 100);
+      document.getElementById("progressLabel").textContent = `${done} of ${total} stops completed`;
+      document.getElementById("progressPercent").textContent = `${pct}%`;
+      document.getElementById("progressFill").style.width = `${pct}%`;
+
+      // Determine active stop (first uncompleted)
+      let activeIdx = tour.stops.findIndex((_, i) => !completed.has(i));
+
+      // Render SVG Route Map
+      const svg = document.getElementById("routeSvg");
+      const positions = [
+        { x: 75, y: 78 },
+        { x: 245, y: 42 },
+        { x: 415, y: 82 },
+        { x: 565, y: 45 }
+      ];
+
+      let pathD = `M ${positions[0].x} ${positions[0].y} ` +
+        positions.slice(1).map((p, i) => {
+          const prev = positions[i];
+          const cx = (prev.x + p.x) / 2;
+          return `Q ${cx} ${(prev.y + p.y) / 2 - 22}, ${p.x} ${p.y}`;
+        }).join(" ");
+
+      let svgHtml = `
+        <path d="${pathD}" fill="none" stroke="#D5CCBE" stroke-width="4" stroke-dasharray="7 6" stroke-linecap="round"/>
+      `;
+
+      tour.stops.forEach((stop, i) => {
+        const pos = positions[i];
+        const isDone = completed.has(i);
+        const isActive = i === activeIdx;
+        const fill = isDone ? "#1E4D3B" : isActive ? "#B8522E" : "#FFFFFF";
+        const stroke = isDone ? "#1E4D3B" : isActive ? "#B8522E" : "#8C857B";
+        const numColor = (isDone || isActive) ? "#FFFFFF" : "#1F2421";
+        const shortName = stop.name.length > 20 ? stop.name.slice(0, 19) + "…" : stop.name;
+
+        svgHtml += `
+          <g class="waypoint-node" onclick="scrollToStop(${i})">
+            <circle cx="${pos.x}" cy="${pos.y}" r="${isActive ? 16 : 13}" fill="${fill}" stroke="${stroke}" stroke-width="3"/>
+            <text x="${pos.x}" y="${pos.y + 4}" text-anchor="middle" style="fill:${numColor}; font-size:11px;">${isDone ? "✓" : i + 1}</text>
+            <text x="${pos.x}" y="${pos.y + 30}" text-anchor="middle">${shortName}</text>
+            <text x="${pos.x}" y="${pos.y - 20}" text-anchor="middle" style="fill:#7A736A; font-size:10px;">${stop.dist}</text>
+          </g>
+        `;
+      });
+      svg.innerHTML = svgHtml;
+
+      // Render Stop Cards
+      const list = document.getElementById("stopList");
+      list.innerHTML = tour.stops.map((stop, i) => {
+        const isDone = completed.has(i);
+        const isActive = i === activeIdx;
+        return `
+          <article class="stop-card ${isDone ? "completed" : ""} ${isActive ? "active-stop" : ""}" id="stop-card-${i}">
+            <div class="stop-top">
+              <div>
+                <span class="stop-time">${stop.time} ${isActive ? "• UP NEXT" : ""}</span>
+                <h3 class="stop-title">${i + 1}. ${stop.name}</h3>
+                <p class="stop-summary">${stop.summary}</p>
+              </div>
+              <button class="check-btn" onclick="toggleStop(${i})" title="Mark stop visited">✓</button>
+            </div>
+
+            <div class="stop-actions">
+              <button class="btn btn-outline" style="padding: 7px 11px; font-size: 0.8rem;" onclick="toggleStory(${i})">📖 Guide Story & Photo Tip</button>
+              <button class="btn btn-outline" style="padding: 7px 11px; font-size: 0.8rem;" onclick="speakText('${stop.name.replace(/'/g, "\\'")}. ${stop.story.replace(/'/g, "\\'")}')">🔊 Listen</button>
+            </div>
+
+            <div class="story-drawer" id="story-${i}">
+              <p>${stop.story}</p>
+              <div class="insider-box">
+                <strong>📸 Guide Photo & Etiquette Tip:</strong> ${stop.tip}
+              </div>
+            </div>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function toggleStory(i) {
+      document.getElementById(`story-${i}`).classList.toggle("open");
+    }
+
+    function scrollToStop(i) {
+      const el = document.getElementById(`stop-card-${i}`);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        document.getElementById(`story-${i}`).classList.add("open");
+      }
+    }
+
+    // Pocket Toolkit Tabs
+    document.querySelectorAll(".tool-tab").forEach(tab => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".tool-tab").forEach(t => t.classList.remove("active"));
+        document.querySelectorAll(".tool-panel").forEach(p => p.classList.remove("active"));
+        tab.classList.add("active");
+        document.getElementById(`panel-${tab.dataset.tool}`).classList.add("active");
+      });
+    });
+
+    // Swahili Phrasebook
+    let currentCat = "all";
+    function renderPhrases() {
+      const grid = document.getElementById("phraseGrid");
+      const filtered = currentCat === "all" ? phrases : phrases.filter(p => p.cat === currentCat);
+      grid.innerHTML = filtered.map(p => `
+        <div class="phrase-item">
+          <div>
+            <strong style="color: var(--secondary); display: block;">${p.sw}</strong>
+            <span style="font-size: 0.8rem; color: var(--muted);">${p.en}</span>
+          </div>
+          <button class="btn btn-outline" style="padding: 6px 9px;" onclick="speakText('${p.sw.replace(/'/g, "\\'")}')" title="Pronounce">🔊</button>
+        </div>
+      `).join("");
+    }
+
+    document.getElementById("phraseFilters").addEventListener("click", (e) => {
+      const chip = e.target.closest(".chip");
+      if (!chip) return;
+      document.querySelectorAll("#phraseFilters .chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      currentCat = chip.dataset.cat;
+      renderPhrases();
+    });
+
+    // Currency Converter
+    const rates = { USD: 129, EUR: 138, GBP: 164 };
+    const symbols = { USD: "$", EUR: "€", GBP: "£" };
+
+    function updateCurrency() {
+      const kes = parseFloat(document.getElementById("kesInput").value) || 0;
+      const curr = document.getElementById("targetCurrency").value;
+      const converted = (kes / rates[curr]).toFixed(2);
+      document.getElementById("convertedOutput").textContent = `${symbols[curr]}${converted}`;
+    }
+
+    function setKes(val) {
+      document.getElementById("kesInput").value = val;
+      updateCurrency();
+    }
+
+    document.getElementById("kesInput").addEventListener("input", updateCurrency);
+    document.getElementById("targetCurrency").addEventListener("change", updateCurrency);
+
+    // Packing Checklist
+    function renderPacking() {
+      const container = document.getElementById("packingList");
+      container.innerHTML = defaultPacking.map((item, idx) => {
+        const checked = !!packedState[idx];
+        return `
+          <label class="pack-item ${checked ? "checked" : ""}">
+            <input type="checkbox" ${checked ? "checked" : ""} onchange="togglePack(${idx})"/>
+            <span>${item}</span>
+          </label>
+        `;
+      }).join("");
+    }
+
+    function togglePack(idx) {
+      packedState[idx] = !packedState[idx];
+      localStorage.setItem("karibu_packed", JSON.stringify(packedState));
+      renderPacking();
+    }
+
+    // Modals & Toasts
+    function openModal(id) { document.getElementById(id).classList.add("open"); }
+    function closeModal(id) { document.getElementById(id).classList.remove("open"); }
+
+    function showToast(msg) {
+      const t = document.getElementById("toast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 2600);
+    }
+
+    function copyGuideCard() {
+      const text = "Guide Juma Mwangi | Phone/WhatsApp: +254 712 345 678 | Land Cruiser: KCD 412S";
+      navigator.clipboard?.writeText(text);
+      showToast("Guide contact card copied!");
+    }
+
+    function submitDetour() {
+      const val = document.getElementById("detourInput").value.trim();
+      if (!val) return showToast("Please enter a quick note first");
+      document.getElementById("detourInput").value = "";
+      closeModal("detourModal");
+      showToast("Request sent to Guide Juma!");
+    }
+
+    function submitReview() {
+      const val = document.getElementById("reviewText").value.trim();
+      if (!val) return showToast("Write a short note first");
+      document.getElementById("reviewText").value = "";
+      closeModal("reviewModal");
+      showToast("Asante! Review saved for your guide.");
+    }
+
+    // Init
+    renderTour();
+    renderPhrases();
+    updateCurrency();
+    renderPacking();
+  </script>
+</body>
+</html>
