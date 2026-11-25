@@ -36,7 +36,7 @@
     h1, h2, h3, .serif { font-family: 'Fraunces', serif; }
 
     .container {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
       padding: 0 16px;
     }
@@ -163,7 +163,7 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 20px;
+      padding: 22px;
       box-shadow: var(--shadow);
       margin-bottom: 18px;
     }
@@ -192,33 +192,147 @@
       margin-bottom: 16px;
     }
 
-    /* Hero Banner (Home) */
-    .hero {
-      background: linear-gradient(125deg, #1E4D3B 0%, #2C664F 60%, #B8522E 140%);
+    /* Sliding Video Scenery Showcase */
+    .video-slider-card {
+      background: #121815;
       color: #fff;
       border-radius: 22px;
-      padding: 28px 24px;
-      margin-bottom: 20px;
+      overflow: hidden;
       box-shadow: var(--shadow);
+      margin-bottom: 20px;
+      position: relative;
     }
 
-    .hero-badge {
+    .video-stage {
+      position: relative;
+      width: 100%;
+      height: 410px;
+      background: #0d120f;
+      overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+      .video-stage { height: 290px; }
+    }
+
+    .slide-track {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .video-slide {
+      min-width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .video-slide video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(12,18,15,0.22) 0%, rgba(12,18,15,0.45) 50%, rgba(12,18,15,0.88) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 24px;
+    }
+
+    .slide-badge {
       display: inline-block;
-      background: rgba(255,255,255,0.16);
-      padding: 4px 12px;
+      background: var(--accent);
+      color: #1F2421;
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 4px 11px;
       border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      margin-bottom: 10px;
+      width: fit-content;
+      margin-bottom: 8px;
     }
 
-    .hero h2 { font-size: 1.85rem; line-height: 1.2; margin-bottom: 10px; }
-    .hero p { color: #E4EFEA; max-width: 620px; margin-bottom: 18px; font-size: 0.96rem; }
-    .hero-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+    .video-overlay h2 {
+      font-size: 1.7rem;
+      line-height: 1.2;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .video-overlay p {
+      font-size: 0.9rem;
+      color: #E6EFEA;
+      max-width: 620px;
+      margin-bottom: 14px;
+    }
+
+    .slider-controls {
+      position: absolute;
+      top: 50%;
+      left: 12px;
+      right: 12px;
+      transform: translateY(-50%);
+      display: flex;
+      justify-content: space-between;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .slider-arrow {
+      pointer-events: auto;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.35);
+      background: rgba(18, 24, 21, 0.65);
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      backdrop-filter: blur(6px);
+    }
+    .slider-arrow:hover { background: var(--primary); border-color: var(--primary); }
+
+    .slider-footer {
+      background: #17201C;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .slider-dots {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .slider-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255,255,255,0.3);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .slider-dot.active {
+      width: 26px;
+      border-radius: 999px;
+      background: var(--accent);
+    }
 
     .stat-strip {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 12px;
       margin-bottom: 20px;
     }
@@ -227,11 +341,48 @@
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 14px;
-      padding: 14px;
+      padding: 15px;
       text-align: center;
     }
     .stat-box strong { display: block; font-size: 1.35rem; color: var(--primary); font-family: 'Fraunces', serif; }
     .stat-box span { font-size: 0.8rem; color: var(--muted); font-weight: 600; }
+
+    /* Timeline / Past Experience */
+    .timeline {
+      border-left: 3px solid var(--accent);
+      margin-left: 10px;
+      padding-left: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .timeline-item {
+      position: relative;
+      background: var(--surface-alt);
+      padding: 14px 16px;
+      border-radius: 12px;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: -28px;
+      top: 18px;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--primary);
+      border: 2px solid var(--surface);
+    }
+
+    .timeline-year {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
 
     /* Filter Pills */
     .filter-row {
@@ -400,7 +551,7 @@
       z-index: 45;
     }
     .bottom-inner {
-      max-width: 960px;
+      max-width: 980px;
       margin: 0 auto;
       display: flex;
       gap: 10px;
@@ -468,16 +619,97 @@
 
     <!-- ==================== 1. HOME PAGE ==================== -->
     <section id="page-home" class="page-view active">
-      <div class="hero">
-        <span class="hero-badge">🇰🇪 KPSGA Certified Personal Guide • 4x4 Land Cruiser</span>
-        <h2>Explore Kenya With Darius Deedea</h2>
-        <p>From sunrise lion tracking in Nairobi National Park to multi-day Maasai Mara expeditions, coastal Diani escapes, and authentic Nairobi food walks—guided safely at your pace.</p>
-        <div class="hero-actions">
-          <button class="btn btn-accent" onclick="navigateTo('booking')">📅 Book a Custom Tour</button>
-          <button class="btn btn-outline" style="background: rgba(255,255,255,0.14); color: #fff; border-color: rgba(255,255,255,0.3);" onclick="navigateTo('sites')">Explore All Tourist Sites →</button>
+
+      <!-- Sliding Videos of Beautiful Sceneries in Kenya -->
+      <div class="video-slider-card" id="scenerySlider">
+        <div class="video-stage">
+          <div class="slide-track" id="slideTrack">
+            <!-- Slide 1 -->
+            <div class="video-slide">
+              <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=80">
+                <source src="https://assets.mixkit.net/videos/preview/mixkit-wild-elephants-walking-in-the-savanna-4323-large.mp4" type="video/mp4">
+              </video>
+              <div class="video-overlay">
+                <span class="slide-badge">🎥 Scenery 1 of 4 • Savanna & Wildlife</span>
+                <h2>Golden Horizons of the Maasai Mara & Amboseli</h2>
+                <p>Watch wildlife roam across sweeping golden plains with dramatic East African skies.</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  <button class="btn btn-accent" onclick="navigateTo('booking')">📅 Book This Safari</button>
+                  <button class="btn btn-outline" style="background: rgba(255,255,255,0.16); color: #fff; border-color: rgba(255,255,255,0.3);" onclick="navigateTo('sites')">Explore Sites →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="video-slide">
+              <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1200&q=80">
+                <source src="https://assets.mixkit.net/videos/preview/mixkit-aerial-view-of-a-tropical-beach-and-ocean-waves-4306-large.mp4" type="video/mp4">
+              </video>
+              <div class="video-overlay">
+                <span class="slide-badge">🎥 Scenery 2 of 4 • Indian Ocean Coast</span>
+                <h2>Turquoise Waters & White Sands of Diani Beach</h2>
+                <p>Unwind along Kenya's palm-fringed southern coast after thrilling inland game drives.</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  <button class="btn btn-accent" onclick="bookSpecificSite('Diani Beach & Wasini Island Excursion')">📅 Book Coastal Trip</button>
+                  <button class="btn btn-outline" style="background: rgba(255,255,255,0.16); color: #fff; border-color: rgba(255,255,255,0.3);" onclick="navigateTo('popular')">Popular Areas →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="video-slide">
+              <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1489392191049-fc10c97e64b6?auto=format&fit=crop&w=1200&q=80">
+                <source src="https://assets.mixkit.net/videos/preview/mixkit-sunrise-over-the-mountains-and-valley-4285-large.mp4" type="video/mp4">
+              </video>
+              <div class="video-overlay">
+                <span class="slide-badge">🎥 Scenery 3 of 4 • Rift Valley & Highlands</span>
+                <h2>Misty Escarpments & Great Rift Valley Lakes</h2>
+                <p>Experience dramatic volcanic cliffs, highland tea air, and tranquil Rift Valley waters.</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  <button class="btn btn-accent" onclick="bookSpecificSite('Lake Nakuru & Lake Naivasha Day Trip')">📅 Book Rift Valley Tour</button>
+                  <button class="btn btn-outline" style="background: rgba(255,255,255,0.16); color: #fff; border-color: rgba(255,255,255,0.3);" onclick="navigateTo('live')">Live Companion →</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="video-slide">
+              <video autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1523805009345-7448845a9e53?auto=format&fit=crop&w=1200&q=80">
+                <source src="https://assets.mixkit.net/videos/preview/mixkit-lion-resting-in-the-grass-4327-large.mp4" type="video/mp4">
+              </video>
+              <div class="video-overlay">
+                <span class="slide-badge">🎥 Scenery 4 of 4 • Big Cats & Conservation</span>
+                <h2>Close Encounters With Kenya's Iconic Wildlife</h2>
+                <p>Track lions, elephants, giraffes, and rhinos with patient, ethical guiding by Darius Deedea.</p>
+                <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                  <button class="btn btn-accent" onclick="navigateTo('booking')">📅 Plan Custom Safari</button>
+                  <button class="btn btn-outline" style="background: rgba(255,255,255,0.16); color: #fff; border-color: rgba(255,255,255,0.3);" onclick="navigateTo('contact')">Contact Darius →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-controls">
+            <button class="slider-arrow" onclick="prevSlide()" aria-label="Previous scenery video">‹</button>
+            <button class="slider-arrow" onclick="nextSlide()" aria-label="Next scenery video">›</button>
+          </div>
+        </div>
+
+        <div class="slider-footer">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span id="slideCaption" style="font-size: 0.84rem; font-weight: 600; color: #E5EFEA;">Maasai Mara & Amboseli Savanna</span>
+            <button class="btn btn-outline" style="padding: 5px 11px; font-size: 0.76rem; background: rgba(255,255,255,0.12); color: #fff; border-color: rgba(255,255,255,0.22);" id="autoPlayBtn" onclick="toggleAutoSlide()">⏸ Pause Slide</button>
+          </div>
+          <div class="slider-dots" id="sliderDots">
+            <button class="slider-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+            <button class="slider-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+            <button class="slider-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+            <button class="slider-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+          </div>
         </div>
       </div>
 
+      <!-- Quick Metrics -->
       <div class="stat-strip">
         <div class="stat-box"><strong>8+ Years</strong><span>Guiding Experience</span></div>
         <div class="stat-box"><strong>450+</strong><span>Happy Travelers</span></div>
@@ -485,25 +717,62 @@
         <div class="stat-box"><strong>4.98 ★</strong><span>Guest Rating</span></div>
       </div>
 
+      <!-- About Us -->
       <div class="card">
-        <h3 class="section-heading">Why Tour With Darius Deedea?</h3>
-        <p class="section-sub">Personalized guiding designed for solo travelers, couples, families, and photography groups.</p>
+        <h3 class="section-heading">About Us — Darius Deedea Tour Guide</h3>
+        <p class="section-sub">Local roots, certified professionalism, and genuine hospitality across Kenya.</p>
+        <p style="font-size: 0.94rem; color: var(--text); margin-bottom: 10px;">
+          Founded by <strong>Darius Deedea</strong>, a KPSGA-certified safari and city guide based in Nairobi, our guiding service connects travelers directly with the landscapes, wildlife, and cultures of Kenya without impersonal middlemen or rushed schedules.
+        </p>
+        <p style="font-size: 0.92rem; color: var(--muted);">
+          Whether you are landing at JKIA for a quick Nairobi National Park & Giraffe Centre day trip, embarking on a multi-day Maasai Mara or Amboseli safari, or relaxing along the coast, we tailor every itinerary around safety, comfort, and unforgettable moments.
+        </p>
+      </div>
+
+      <!-- Why Choose Us -->
+      <div class="card">
+        <h3 class="section-heading">Why Choose Us</h3>
+        <p class="section-sub">What makes touring with Darius Deedea different from standard group operators.</p>
         <div class="grid-3">
-          <div style="background: var(--surface-alt); padding: 14px; border-radius: 12px;">
-            <strong>🚙 Private Pop-Up Roof 4x4</strong>
-            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Guaranteed window seats, cooler box, binoculars, and charging ports on every drive.</p>
+          <div style="background: var(--surface-alt); padding: 15px; border-radius: 12px;">
+            <strong>🚙 Well-Maintained 4x4 & Comfort</strong>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 5px;">Pop-up roof safari vehicles with guaranteed window seats, binoculars, cooler box, and charging ports.</p>
           </div>
-          <div style="background: var(--surface-alt); padding: 14px; border-radius: 12px;">
-            <strong>🦁 Expert Wildlife Tracking</strong>
-            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Deep knowledge of animal behavior, birdlife, and photography angles away from crowds.</p>
+          <div style="background: var(--surface-alt); padding: 15px; border-radius: 12px;">
+            <strong>🦁 Ethical, Patient Wildlife Guiding</strong>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 5px;">We respect animal space, wait for the best natural light, and share rich ecological and cultural context.</p>
           </div>
-          <div style="background: var(--surface-alt); padding: 14px; border-radius: 12px;">
-            <strong>🧭 Interactive Live Companion</strong>
-            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 4px;">Follow your itinerary stops, Swahili phrases, and KES converter right on your phone.</p>
+          <div style="background: var(--surface-alt); padding: 15px; border-radius: 12px;">
+            <strong>💬 Direct & Transparent Service</strong>
+            <p style="font-size: 0.85rem; color: var(--muted); margin-top: 5px;">Speak directly with Darius before, during, and after your trip—with flexible stops and live phone companion tools.</p>
           </div>
         </div>
       </div>
 
+      <!-- Past Experience -->
+      <div class="card">
+        <h3 class="section-heading">Past Experience & Track Record</h3>
+        <p class="section-sub">Years of field guiding across national parks, conservation sanctuaries, and city routes.</p>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="timeline-year">2022 – Present • Lead Private Safari & City Guide</span>
+            <h4 style="margin: 3px 0;">Darius Deedea Tour Guide (Nairobi & Nationwide)</h4>
+            <p style="font-size: 0.86rem; color: var(--muted);">Led 250+ private and small-group safaris to Maasai Mara, Amboseli, Lake Nakuru, and Nairobi conservation hubs with a 4.98★ guest satisfaction record.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2019 – 2022 • Senior Driver-Guide</span>
+            <h4 style="margin: 3px 0;">Rift Valley & Southern Circuit Expeditions</h4>
+            <p style="font-size: 0.86rem; color: var(--muted);">Specialized in multi-day overland routes, wildlife photography positioning, airport transfers, and Maasai cultural community visits.</p>
+          </div>
+          <div class="timeline-item">
+            <span class="timeline-year">2018 • Certification & Field Training</span>
+            <h4 style="margin: 3px 0;">Kenya Professional Safari Guides Association (KPSGA) & First Aid</h4>
+            <p style="font-size: 0.86rem; color: var(--muted);">Trained in East African flora and fauna identification, off-road 4x4 recovery, defensive driving, and wilderness first aid.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Featured Destinations Preview -->
       <div class="card">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
           <h3 class="section-heading" style="margin: 0;">Featured Destinations</h3>
@@ -765,6 +1034,48 @@
   </div>
 
   <script>
+    // Sliding Scenery Videos State
+    const slideCaptions = [
+      "Maasai Mara & Amboseli Savanna",
+      "Diani Beach & Indian Ocean Coast",
+      "Great Rift Valley & Highland Views",
+      "Wildlife & Big Cat Encounters"
+    ];
+    let currentSlide = 0;
+    const totalSlides = slideCaptions.length;
+    let autoSlideTimer = setInterval(nextSlide, 7000);
+    let isAutoSliding = true;
+
+    function goToSlide(index) {
+      currentSlide = (index + totalSlides) % totalSlides;
+      document.getElementById("slideTrack").style.transform = `translateX(-${currentSlide * 100}%)`;
+      document.getElementById("slideCaption").textContent = slideCaptions[currentSlide];
+
+      document.querySelectorAll("#sliderDots .slider-dot").forEach((dot, i) => {
+        dot.classList.toggle("active", i === currentSlide);
+      });
+    }
+
+    function nextSlide() {
+      goToSlide(currentSlide + 1);
+    }
+
+    function prevSlide() {
+      goToSlide(currentSlide - 1);
+    }
+
+    function toggleAutoSlide() {
+      isAutoSliding = !isAutoSliding;
+      const btn = document.getElementById("autoPlayBtn");
+      if (isAutoSliding) {
+        autoSlideTimer = setInterval(nextSlide, 7000);
+        btn.textContent = "⏸ Pause Slide";
+      } else {
+        clearInterval(autoSlideTimer);
+        btn.textContent = "▶ Auto Slide";
+      }
+    }
+
     // Tourist Sites Data
     const touristSites = [
       {
@@ -931,10 +1242,8 @@
     });
 
     function renderHomeAndPopular() {
-      // Home featured (top 3)
       document.getElementById("homeFeaturedGrid").innerHTML = touristSites.slice(0, 3).map(createSiteCardHTML).join("");
 
-      // Most Popular Areas (top 6 ranked)
       const popular = touristSites.filter(s => s.popularRank);
       document.getElementById("popularAreasGrid").innerHTML = popular.map(site => `
         <div class="popular-card">
